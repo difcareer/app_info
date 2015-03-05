@@ -1,9 +1,11 @@
-һ��Ӧ����Ϣ�鿴��
+一款应用信息查看器
 
-���ԣ�
+可以：
 
-��ȡ��װ����� ���ơ�ͼ�ꡢ��������װ��·��������Ŀ¼
+读取安装程序的 名称、图标、包名、安装包路径、数据目录
 
-�û���װ����ʹ����ɫ��ʾ��ϵͳ����ʹ�û�ɫ��ʾ
+用户安装程序使用绿色标示，系统程序使用黄色标示
 
-����������ֱ�Ӵ򿪣����������activity�Ļ���
+点击程序可以直接打开（如果有启动activity的话）
+
+<a href="https://github.com/difcareer/app_info/blob/master/out/production/appinfo/appinfo.apk">直接下载</a>
