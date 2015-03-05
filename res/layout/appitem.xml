@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent">
+
+
+    <ImageView android:id="@+id/appIcon"
+               android:layout_width="40sp"
+               android:layout_height="40sp"
+               android:layout_gravity="center_vertical"
+               android:layout_margin="5sp"/>
+
+    <LinearLayout android:orientation="vertical"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content">
+
+        <TextView android:id="@+id/appName"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:textColor="#FFFFFFFF"
+                  android:textSize="20sp"/>
+        <TextView android:id="@+id/pkgName"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:textColor="#FFFFFFFF"
+                  android:textSize="13sp"/>
+        <TextView android:id="@+id/apkPath"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:textColor="#FFFFFFFF"
+                  android:textSize="13sp"/>
+        <TextView android:id="@+id/dataDir"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:textColor="#FFFFFFFF"
+                  android:textSize="13sp"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>
