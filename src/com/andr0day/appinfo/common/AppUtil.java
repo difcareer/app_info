@@ -1,5 +1,6 @@
 package com.andr0day.appinfo.common;
 
+import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -70,6 +71,14 @@ public class AppUtil {
 
     public static boolean isSystemApp(int flags) {
         return (flags & ApplicationInfo.FLAG_SYSTEM) == ApplicationInfo.FLAG_SYSTEM;
+    }
+
+    public static Intent getAppLauncherIntent(String pkgName, PackageManager pm) {
+        try {
+            return pm.getLaunchIntentForPackage(pkgName);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
 

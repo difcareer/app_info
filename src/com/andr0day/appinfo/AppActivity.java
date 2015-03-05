@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -121,13 +122,19 @@ public class AppActivity extends Activity {
             if (position < data.size()) {
 //                no permission
                 viewHolder.appIcon.setImageDrawable((Drawable) data.get(position).get(APP_ICON));
-                viewHolder.appName.setText((String) data.get(position).get(APP_NAME));
+                String appName = (String) data.get(position).get(APP_NAME);
+                String pkgName = (String) data.get(position).get(PKG_NAME);
+                if (AppUtil.getAppLauncherIntent(pkgName, AppActivity.this.getPackageManager()) != null) {
+                    viewHolder.appName.setText(Html.fromHtml("<u>" + appName + "</u>"));
+                } else {
+                    viewHolder.appName.setText(appName);
+                }
                 if (AppUtil.isSystemApp((Integer) data.get(position).get(APP_FLAGS))) {
                     viewHolder.appName.setTextColor(getResources().getColor(R.color.yellow));
                 } else {
                     viewHolder.appName.setTextColor(getResources().getColor(R.color.green));
                 }
-                viewHolder.pkgName.setText((String) data.get(position).get(PKG_NAME));
+                viewHolder.pkgName.setText(pkgName);
                 viewHolder.apkPath.setText((String) data.get(position).get(APK_PATH));
                 viewHolder.dataDir.setText((String) data.get(position).get(DATA_DIR));
             }
@@ -135,7 +142,8 @@ public class AppActivity extends Activity {
                 @Override
                 public void onClick(View v) {
                     try {
-                        Intent intent = AppActivity.this.getPackageManager().getLaunchIntentForPackage((String) data.get(position).get(PKG_NAME));
+                        String pkgName = (String) data.get(position).get(PKG_NAME);
+                        Intent intent = AppUtil.getAppLauncherIntent(pkgName, AppActivity.this.getPackageManager());
                         AppActivity.this.startActivity(intent);
                     } catch (Exception e) {
                         //ignore

@@ -6,6 +6,6 @@
 
 用户安装程序使用绿色标示，系统程序使用黄色标示
 
-点击程序可以直接打开（如果有启动activity的话）
+可直接打开的程序使用下划线标示
 
 <a href="https://github.com/difcareer/app_info/blob/master/out/production/appinfo/appinfo.apk">直接下载</a>
