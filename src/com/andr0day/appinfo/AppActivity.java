@@ -11,7 +11,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,8 +23,10 @@ import com.andr0day.appinfo.common.AppUtil;
 import com.andr0day.appinfo.common.CertUtils;
 import com.andr0day.appinfo.common.Constants;
 import com.andr0day.appinfo.common.StringUtils;
+import com.andr0day.appinfo.common.SystemPropertiesCollector;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -68,7 +69,8 @@ public class AppActivity extends Activity {
             @Override
             public void onClick(View v) {
                 StringBuilder sb = new StringBuilder();
-                sb.append("> ro.debuggable:\n    " + reflectGetDebug() + "\n");
+                sb.append("> " + SystemPropertiesCollector.IS_DEBUGGABLE + "\n    " + SystemPropertiesCollector.getInt(SystemPropertiesCollector.IS_DEBUGGABLE, 0) + "\n");
+                sb.append("> " + SystemPropertiesCollector.SYSTEM_SECURE + "\n    " + SystemPropertiesCollector.get(SystemPropertiesCollector.SYSTEM_SECURE,"0") + "\n");
                 sb.append("> ro.build.id:\n    " + Build.ID + "\n");
                 sb.append("> ro.build.display.id:\n    " + Build.DISPLAY + "\n");
                 sb.append("> ro.product.name:\n    " + Build.PRODUCT + "\n");
@@ -97,20 +99,6 @@ public class AppActivity extends Activity {
                 new AppInfoCollector(AppActivity.this).execute();
             }
         });
-    }
-
-    private Object reflectGetDebug() {
-        Class clazz = Build.class;
-        try {
-            Field field = clazz.getDeclaredField("IS_DEBUGGABLE");
-            field.setAccessible(true);
-            return field.get(null);
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 
     private class MyAdaptor extends BaseAdapter {
