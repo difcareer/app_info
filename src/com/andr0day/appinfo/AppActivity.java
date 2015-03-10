@@ -233,8 +233,6 @@ public class AppActivity extends Activity {
                 PackageInfo tmpPkg = null;
                 try {
                     tmpPkg = packageManager.getPackageInfo(AppUtil.getPkgName(pkg), PackageManager.GET_SIGNATURES);
-//                    Log.e("SIG",AppUtil.getAppName(pkg, packageManager));
-//                    CertUtils.parseSignature(tmpPkg.signatures[0].toByteArray());
                     tmp.put(Constants.APP_SIGS, CertUtils.getSigMd5s(tmpPkg));
                 } catch (PackageManager.NameNotFoundException e) {
                     e.printStackTrace();

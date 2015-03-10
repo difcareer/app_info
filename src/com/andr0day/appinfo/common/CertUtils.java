@@ -12,7 +12,9 @@ import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CertUtils {
 
@@ -20,12 +22,28 @@ public class CertUtils {
 
     private static final String MOBILE_SAFE = "DC6DBD6E49682A57A8B82889043B93A8";
 
+    public static final String PUB_KEY = "pubKey";
+
+    public static final String SIGN_ALG_NAME = "signAlgName";
+
+    public static final String SIGN_NUMBER = "signNumber";
+
+    public static final String SUBJECT_DN = "subjectDN";
+
     private static final ArrayList<String> SIGNATURES = new ArrayList<String>();
 
     public static List<String> getSigMd5s(PackageInfo packageInfo) {
         List<String> sigs = new ArrayList<String>();
         for (Signature signature : packageInfo.signatures) {
-            sigs.add(StringUtils.toHexString(md5NonE(signature.toByteArray())));
+            StringBuilder sb = new StringBuilder();
+            sb.append("> md5 : \n   "+StringUtils.toHexString(md5NonE(signature.toByteArray())) + "\n");
+            Map<String, String> sigInfo = getSigInfo(signature.toByteArray());
+            for (String k : sigInfo.keySet()) {
+                if (!PUB_KEY.equals(k) && !SIGN_NUMBER.equals(k)) {
+                    sb.append("> " + k + " : \n   " + sigInfo.get(k).trim() + "\n");
+                }
+            }
+            sigs.add(sb.toString());
         }
         return sigs;
     }
@@ -53,16 +71,31 @@ public class CertUtils {
         return debuggable;
     }
 
+    public static Map<String, String> getSigInfo(byte[] signature) {
+        Map<String, String> map = new HashMap<String, String>();
+        try {
+            CertificateFactory certFactory = CertificateFactory.getInstance("X.509");
+            X509Certificate cert = (X509Certificate) certFactory.generateCertificate(new ByteArrayInputStream(signature));
+            map.put(PUB_KEY, cert.getPublicKey().toString());
+            map.put(SIGN_ALG_NAME, cert.getSigAlgName());
+            map.put(SIGN_NUMBER, cert.getSerialNumber().toString());
+            map.put(SUBJECT_DN, cert.getSubjectDN().toString());
+        } catch (CertificateException e) {
+            e.printStackTrace();
+        }
+        return map;
+    }
+
     public static void parseSignature(byte[] signature) {
         try {
             CertificateFactory certFactory = CertificateFactory.getInstance("X.509");
             X509Certificate cert = (X509Certificate) certFactory.generateCertificate(new ByteArrayInputStream(signature));
             String pubKey = cert.getPublicKey().toString();
             String signNumber = cert.getSerialNumber().toString();
-            Log.e("SIG","signName:" + cert.getSigAlgName());
-            Log.e("SIG","pubKey:" + pubKey);
-            Log.e("SIG","signNumber:" + signNumber);
-            Log.e("SIG","subjectDN:" + cert.getSubjectDN().toString());
+            Log.e("SIG", "signName:" + cert.getSigAlgName());
+            Log.e("SIG", "pubKey:" + pubKey);
+            Log.e("SIG", "signNumber:" + signNumber);
+            Log.e("SIG", "subjectDN:" + cert.getSubjectDN().toString());
         } catch (CertificateException e) {
             e.printStackTrace();
         }
