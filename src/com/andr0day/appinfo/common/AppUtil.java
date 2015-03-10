@@ -73,6 +73,10 @@ public class AppUtil {
         return (flags & ApplicationInfo.FLAG_SYSTEM) == ApplicationInfo.FLAG_SYSTEM;
     }
 
+    public static boolean isDebugable(int flags) {
+        return ((flags & ApplicationInfo.FLAG_DEBUGGABLE) == ApplicationInfo.FLAG_DEBUGGABLE);
+    }
+
     public static Intent getAppLauncherIntent(String pkgName, PackageManager pm) {
         try {
             return pm.getLaunchIntentForPackage(pkgName);

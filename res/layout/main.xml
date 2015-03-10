@@ -1,13 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
+              android:orientation="horizontal"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
+              android:layout_gravity="center"
         >
-    <TextView
-            android:layout_width="fill_parent"
+
+    <Button
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hello World, MyActivity"
-            />
+            android:text="查看系统参数"
+            android:id="@+id/systemInfo" />
+
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="查看Build参数"
+            android:id="@+id/buildInfo" />
+
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="查看应用信息"
+            android:id="@+id/appInfo" />
 </LinearLayout>
 
