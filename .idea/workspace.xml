@@ -19,18 +19,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="07d97694-bcc0-4554-b370-587163ad4c72" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/andr0day/appinfo/common/SystemPropertiesCollector.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/andr0day/appinfo/AppInfoActivity.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/andr0day/appinfo/BuildInfoActivity.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/andr0day/appinfo/MountInfoActivity.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/andr0day/appinfo/SystemInfoActivity.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/layout/largetext.xml" />
+      <change type="DELETED" beforePath="E:\code\appinfo\out\production\appinfo\com\andr0day\appinfo\AppActivity$AppInfoCollector.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\appinfo\out\production\appinfo\com\andr0day\appinfo\AppActivity$MyAdaptor$1.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\appinfo\out\production\appinfo\com\andr0day\appinfo\AppActivity$MyAdaptor.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\appinfo\out\production\appinfo\com\andr0day\appinfo\AppActivity$ViewHolder.class" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/appinfo/com/andr0day/appinfo/AppActivity$1.class" afterPath="$PROJECT_DIR$/out/production/appinfo/com/andr0day/appinfo/AppActivity$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/appinfo/com/andr0day/appinfo/AppActivity$2.class" afterPath="$PROJECT_DIR$/out/production/appinfo/com/andr0day/appinfo/AppActivity$2.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/appinfo/com/andr0day/appinfo/AppActivity$3.class" afterPath="$PROJECT_DIR$/out/production/appinfo/com/andr0day/appinfo/AppActivity$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/appinfo/com/andr0day/appinfo/AppActivity$AppInfoCollector.class" afterPath="$PROJECT_DIR$/out/production/appinfo/com/andr0day/appinfo/AppActivity$AppInfoCollector.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/appinfo/com/andr0day/appinfo/AppActivity$MyAdaptor$1.class" afterPath="$PROJECT_DIR$/out/production/appinfo/com/andr0day/appinfo/AppActivity$MyAdaptor$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/appinfo/com/andr0day/appinfo/AppActivity$MyAdaptor.class" afterPath="$PROJECT_DIR$/out/production/appinfo/com/andr0day/appinfo/AppActivity$MyAdaptor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/appinfo/com/andr0day/appinfo/AppActivity$ViewHolder.class" afterPath="$PROJECT_DIR$/out/production/appinfo/com/andr0day/appinfo/AppActivity$ViewHolder.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/appinfo/com/andr0day/appinfo/AppActivity.class" afterPath="$PROJECT_DIR$/out/production/appinfo/com/andr0day/appinfo/AppActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/appinfo/com/andr0day/appinfo/R$id.class" afterPath="$PROJECT_DIR$/out/production/appinfo/com/andr0day/appinfo/R$id.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/appinfo/com/andr0day/appinfo/R$layout.class" afterPath="$PROJECT_DIR$/out/production/appinfo/com/andr0day/appinfo/R$layout.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/appinfo/com/andr0day/appinfo/R$string.class" afterPath="$PROJECT_DIR$/out/production/appinfo/com/andr0day/appinfo/R$string.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/appinfo/com/andr0day/appinfo/R.class" afterPath="$PROJECT_DIR$/out/production/appinfo/com/andr0day/appinfo/R.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/appinfo/appinfo.apk" afterPath="$PROJECT_DIR$/out/production/appinfo/appinfo.apk" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/appinfo/appinfo.unaligned.apk" afterPath="$PROJECT_DIR$/out/production/appinfo/appinfo.unaligned.apk" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/andr0day/appinfo/AppActivity.java" afterPath="$PROJECT_DIR$/src/com/andr0day/appinfo/AppActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/main.xml" afterPath="$PROJECT_DIR$/res/layout/main.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/strings.xml" afterPath="$PROJECT_DIR$/res/values/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="appinfo.iws" />
@@ -57,60 +68,94 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="AppActivity.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AppActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/andr0day/appinfo/AppActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.44808125" vertical-offset="1023" max-vertical-offset="4620">
-              <caret line="76" column="78" selection-start-line="76" selection-start-column="78" selection-end-line="76" selection-end-column="78" />
+            <state vertical-scroll-proportion="-2.9375" vertical-offset="1066" max-vertical-offset="1920">
+              <caret line="58" column="29" selection-start-line="58" selection-start-column="16" selection-end-line="58" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#8946#8967#0" expanded="true" />
+                <element signature="e#1761#2039#0" expanded="true" />
+                <element signature="e#2038#2039#0" expanded="true" />
+                <element signature="e#2081#2358#0" expanded="true" />
+                <element signature="e#2357#2358#0" expanded="true" />
+                <element signature="e#2398#2673#0" expanded="true" />
+                <element signature="e#2672#2673#0" expanded="true" />
+                <element signature="e#2715#2992#0" expanded="true" />
+                <element signature="e#2991#2992#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SystemPropertiesCollector.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/andr0day/appinfo/common/SystemPropertiesCollector.java">
+      <file leaf-file-name="AppInfoActivity.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/andr0day/appinfo/AppInfoActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3260">
-              <caret line="10" column="48" selection-start-line="10" selection-start-column="48" selection-end-line="10" selection-end-column="57" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Class.java" pinned="false" current-in-tab="false">
-        <entry file="file://D:/Tools/AndroidStudio/sources/android-21/java/lang/Class.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="10881" max-vertical-offset="33680">
-              <caret line="623" column="18" selection-start-line="623" selection-start-column="18" selection-end-line="623" selection-end-column="18" />
+            <state vertical-scroll-proportion="0.42269188" vertical-offset="2160" max-vertical-offset="3220">
+              <caret line="157" column="30" selection-start-line="157" selection-start-column="30" selection-end-line="157" selection-end-column="30" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Build.java" pinned="false" current-in-tab="false">
-        <entry file="file://D:/Tools/AndroidStudio/sources/android-21/android/os/Build.java">
+      <file leaf-file-name="TextView.java" pinned="false" current-in-tab="false">
+        <entry file="file://D:/Tools/AndroidStudio/sources/android-21/android/widget/TextView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="12281" max-vertical-offset="13220">
-              <caret line="629" column="0" selection-start-line="629" selection-start-column="0" selection-end-line="629" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="9493" max-vertical-offset="182200">
+              <caret line="619" column="11" selection-start-line="619" selection-start-column="11" selection-end-line="619" selection-end-column="11" />
               <folding>
-                <element signature="e#0#29561#0" expanded="true" />
-                <element signature="e#29003#29004#0" expanded="true" />
-                <element signature="e#29065#29066#0" expanded="true" />
+                <element signature="e#25124#25125#0" expanded="true" />
+                <element signature="e#25159#25160#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SystemProperties.java" pinned="false" current-in-tab="false">
-        <entry file="file://D:/Tools/AndroidStudio/sources/android-21/android/os/SystemProperties.java">
+      <file leaf-file-name="SystemInfoActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/andr0day/appinfo/SystemInfoActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1321" max-vertical-offset="2920">
-              <caret line="93" column="41" selection-start-line="93" selection-start-column="41" selection-end-line="93" selection-end-column="41" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="580">
+              <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MountInfoActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/andr0day/appinfo/MountInfoActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="197" max-vertical-offset="720">
+              <caret line="23" column="65" selection-start-line="23" selection-start-column="65" selection-end-line="23" selection-end-column="65" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540">
+              <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BuildInfoActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/andr0day/appinfo/BuildInfoActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="350" max-vertical-offset="840">
+              <caret line="38" column="40" selection-start-line="37" selection-start-column="8" selection-end-line="38" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="themes.xml" pinned="false" current-in-tab="false">
+        <entry file="file://D:/Tools/AndroidStudio/platforms/android-21/data/res/values/themes.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="8513" max-vertical-offset="17160">
+              <caret line="434" column="17" selection-start-line="434" selection-start-column="17" selection-end-line="434" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -118,61 +163,26 @@
       </file>
       <file leaf-file-name="main.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.965517" vertical-offset="0" max-vertical-offset="660">
-              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
           <provider editor-type-id="android-designer">
             <state />
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CertUtils.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/andr0day/appinfo/common/CertUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="323" max-vertical-offset="2220">
-              <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-              <folding>
-                <element signature="e#1154#1162#0" expanded="true" />
-                <element signature="e#2760#2776#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="appitem.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/layout/appitem.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.1034484" vertical-offset="240" max-vertical-offset="1160">
-              <caret line="21" column="53" selection-start-line="21" selection-start-column="53" selection-end-line="21" selection-end-column="53" />
+            <state vertical-scroll-proportion="-2.775862" vertical-offset="79" max-vertical-offset="920">
+              <caret line="12" column="19" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
               <folding />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="largetext.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/layout/largetext.xml">
           <provider editor-type-id="android-designer">
             <state />
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StringBuilder.java" pinned="false" current-in-tab="false">
-        <entry file="file://D:/Tools/AndroidStudio/sources/android-21/java/lang/StringBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3501" max-vertical-offset="13660">
-              <caret line="214" column="25" selection-start-line="214" selection-start-column="25" selection-end-line="214" selection-end-column="25" />
+            <state vertical-scroll-proportion="-2.7586207" vertical-offset="0" max-vertical-offset="460">
+              <caret line="8" column="47" selection-start-line="8" selection-start-column="47" selection-end-line="8" selection-end-column="47" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AppUtil.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/andr0day/appinfo/common/AppUtil.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1920">
-              <caret line="12" column="20" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="20" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -188,8 +198,6 @@
         <option value="$PROJECT_DIR$/src/com/andr0day/appinfo/ui/Divider.java" />
         <option value="$PROJECT_DIR$/res/values-xhdpi/common.xml" />
         <option value="$PROJECT_DIR$/src/com/andr0day/appinfo/MyActivity.java" />
-        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/res/values/style.xml" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/com/andr0day/appinfo/backgroud/AppInfoCollector.java" />
@@ -200,8 +208,16 @@
         <option value="$PROJECT_DIR$/res/layout/appitem.xml" />
         <option value="$PROJECT_DIR$/src/com/andr0day/appinfo/common/CertUtils.java" />
         <option value="$PROJECT_DIR$/src/com/andr0day/appinfo/common/SystemPropertiesCollector.java" />
-        <option value="$PROJECT_DIR$/src/com/andr0day/appinfo/AppActivity.java" />
+        <option value="$PROJECT_DIR$/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/res/layout/text.xml" />
+        <option value="$PROJECT_DIR$/res/layout/largetext.xml" />
+        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/src/com/andr0day/appinfo/BuildInfoActivity.java" />
+        <option value="$PROJECT_DIR$/src/com/andr0day/appinfo/SystemInfoActivity.java" />
         <option value="$PROJECT_DIR$/res/layout/main.xml" />
+        <option value="$PROJECT_DIR$/src/com/andr0day/appinfo/MountInfoActivity.java" />
+        <option value="$PROJECT_DIR$/src/com/andr0day/appinfo/AppActivity.java" />
+        <option value="$PROJECT_DIR$/src/com/andr0day/appinfo/AppInfoActivity.java" />
       </list>
     </option>
   </component>
@@ -240,7 +256,6 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -351,6 +366,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -674,12 +690,13 @@
       <updated>1425461149387</updated>
       <workItem from="1425461152079" duration="22088000" />
       <workItem from="1425880589357" duration="16960000" />
-      <workItem from="1425956144784" duration="7940000" />
+      <workItem from="1425956144784" duration="8107000" />
+      <workItem from="1426664173255" duration="2942000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46988000" />
+    <option name="totallyTimeSpent" value="50097000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -725,7 +742,6 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="CheckStyle" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32903227" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="FindBugs-IDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -737,6 +753,7 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32903227" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -796,7 +813,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="85" />
+      <option name="time" value="86" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -805,82 +822,15 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/andr0day/appinfo/common/AppUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="1920">
-          <caret line="12" column="20" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/andr0day/appinfo/AppActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2405" max-vertical-offset="3620">
-          <caret line="128" column="24" selection-start-line="128" selection-start-column="24" selection-end-line="128" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#8946#8967#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="100">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/Tools/AndroidStudio/sources/android-21/android/text/Html.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="832" max-vertical-offset="16060">
-          <caret line="97" column="26" selection-start-line="97" selection-start-column="26" selection-end-line="97" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="380">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/res/layout/appitem.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/values/style.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="140" max-vertical-offset="340">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="140" max-vertical-offset="460">
-          <caret line="7" column="37" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/drawable-xhdpi/app_icon.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/appitem.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="280" max-vertical-offset="960">
           <caret line="14" column="50" selection-start-line="14" selection-start-column="50" selection-end-line="14" selection-end-column="52" />
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
@@ -982,22 +932,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="460">
-          <caret line="7" column="37" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="40" max-vertical-offset="200">
-          <caret line="2" column="31" selection-start-line="2" selection-start-column="31" selection-end-line="2" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://D:/Tools/AndroidStudio/sources/android-21/android/text/Html.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="832" max-vertical-offset="16060">
@@ -1027,13 +961,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/Tools/AndroidStudio/sources/android-21/android/widget/TextView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="154301" max-vertical-offset="182200">
-          <caret line="8058" column="31" selection-start-line="8058" selection-start-column="31" selection-end-line="8058" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://D:/Tools/AndroidStudio/sources/android-21/android/view/LayoutInflater.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="6841" max-vertical-offset="19540">
@@ -1045,9 +972,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="121" max-vertical-offset="4080">
           <caret line="35" column="73" selection-start-line="35" selection-start-column="53" selection-end-line="35" selection-end-column="73" />
-          <folding>
-            <element signature="e#0#7951#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1055,7 +979,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="16025" max-vertical-offset="17360">
           <caret line="861" column="0" selection-start-line="861" selection-start-column="0" selection-end-line="861" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1083,22 +1006,10 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/info.xml">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="540">
-          <caret line="9" column="46" selection-start-line="9" selection-start-column="46" selection-end-line="9" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/andr0day/appinfo/common/Constants.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="420">
           <caret line="12" column="50" selection-start-line="12" selection-start-column="50" selection-end-line="12" selection-end-column="50" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1106,7 +1017,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="33401" max-vertical-offset="81060">
           <caret line="1729" column="32" selection-start-line="1729" selection-start-column="32" selection-end-line="1729" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1114,7 +1024,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="503">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1122,9 +1031,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="201" max-vertical-offset="1140">
           <caret line="21" column="9" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1140,10 +1046,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="323" max-vertical-offset="2220">
           <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding>
-            <element signature="e#1154#1162#0" expanded="true" />
-            <element signature="e#2760#2776#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1191,40 +1094,157 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1321" max-vertical-offset="2920">
           <caret line="93" column="41" selection-start-line="93" selection-start-column="41" selection-end-line="93" selection-end-column="41" />
-          <folding />
+          <folding>
+            <element signature="e#0#5742#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Tools/AndroidStudio/sources/android-21/java/io/PrintWriter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="821" max-vertical-offset="13200">
+          <caret line="75" column="11" selection-start-line="75" selection-start-column="11" selection-end-line="75" selection-end-column="11" />
+          <folding>
+            <element signature="e#2772#2773#0" expanded="true" />
+            <element signature="e#2832#2833#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/appitem.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.1034484" vertical-offset="240" max-vertical-offset="1160">
           <caret line="21" column="53" selection-start-line="21" selection-start-column="53" selection-end-line="21" selection-end-column="53" />
           <folding />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/info.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.965517" vertical-offset="0" max-vertical-offset="660">
-          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+        <state vertical-scroll-proportion="-4.224138" vertical-offset="95" max-vertical-offset="540">
+          <caret line="17" column="24" selection-start-line="0" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
           <folding />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.8" vertical-offset="0" max-vertical-offset="200">
+          <caret line="2" column="32" selection-start-line="2" selection-start-column="32" selection-end-line="2" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Tools/AndroidStudio/sources/android-21/android/app/Activity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="55499" max-vertical-offset="119360">
+          <caret line="2953" column="33" selection-start-line="2953" selection-start-column="30" selection-end-line="2953" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Tools/AndroidStudio/platforms/android-21/data/res/values/themes.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="8513" max-vertical-offset="17160">
+          <caret line="434" column="17" selection-start-line="434" selection-start-column="17" selection-end-line="434" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="500">
+          <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
       <provider editor-type-id="android-designer">
         <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.775862" vertical-offset="79" max-vertical-offset="920">
+          <caret line="12" column="19" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/largetext.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.7586207" vertical-offset="0" max-vertical-offset="460">
+          <caret line="8" column="47" selection-start-line="8" selection-start-column="47" selection-end-line="8" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/andr0day/appinfo/SystemInfoActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="580">
+          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/andr0day/appinfo/BuildInfoActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="350" max-vertical-offset="840">
+          <caret line="38" column="40" selection-start-line="37" selection-start-column="8" selection-end-line="38" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/andr0day/appinfo/MountInfoActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="197" max-vertical-offset="720">
+          <caret line="23" column="65" selection-start-line="23" selection-start-column="65" selection-end-line="23" selection-end-column="65" />
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/andr0day/appinfo/AppActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44808125" vertical-offset="1023" max-vertical-offset="4620">
-          <caret line="76" column="78" selection-start-line="76" selection-start-column="78" selection-end-line="76" selection-end-column="78" />
+        <state vertical-scroll-proportion="-2.9375" vertical-offset="1066" max-vertical-offset="1920">
+          <caret line="58" column="29" selection-start-line="58" selection-start-column="16" selection-end-line="58" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#8946#8967#0" expanded="true" />
+            <element signature="e#1761#2039#0" expanded="true" />
+            <element signature="e#2038#2039#0" expanded="true" />
+            <element signature="e#2081#2358#0" expanded="true" />
+            <element signature="e#2357#2358#0" expanded="true" />
+            <element signature="e#2398#2673#0" expanded="true" />
+            <element signature="e#2672#2673#0" expanded="true" />
+            <element signature="e#2715#2992#0" expanded="true" />
+            <element signature="e#2991#2992#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Tools/AndroidStudio/sources/android-21/android/widget/TextView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="9493" max-vertical-offset="182200">
+          <caret line="619" column="11" selection-start-line="619" selection-start-column="11" selection-end-line="619" selection-end-column="11" />
+          <folding>
+            <element signature="e#25124#25125#0" expanded="true" />
+            <element signature="e#25159#25160#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/andr0day/appinfo/AppInfoActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.42269188" vertical-offset="2160" max-vertical-offset="3220">
+          <caret line="157" column="30" selection-start-line="157" selection-start-column="30" selection-end-line="157" selection-end-column="30" />
+          <folding />
         </state>
       </provider>
     </entry>

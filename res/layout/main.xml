@@ -6,22 +6,35 @@
               android:layout_gravity="center"
         >
 
-    <Button
+    <TableLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="查看系统参数"
-            android:id="@+id/systemInfo" />
+            android:layout_height="match_parent">
+        <TableRow>
+            <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="查看应用信息"
+                    android:id="@+id/appInfo" />
 
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="查看Build参数"
-            android:id="@+id/buildInfo" />
+            <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="查看系统参数"
+                    android:id="@+id/systemInfo" />
 
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="查看应用信息"
-            android:id="@+id/appInfo" />
+            <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="查看Build参数"
+                    android:id="@+id/buildInfo" />
+        </TableRow>
+        <TableRow>
+            <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="查看mount信息"
+                    android:id="@+id/mountInfo" />
+        </TableRow>
+    </TableLayout>
 </LinearLayout>
 
