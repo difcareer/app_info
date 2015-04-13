@@ -34,18 +34,4 @@ public class StringUtils {
         byte buf1[] = str.getBytes();
         return md5base64(buf1);
     }
-
-    public static final String join(Collection<String> collections, String sep) {
-        StringBuilder sb = new StringBuilder();
-        if (collections != null && collections.size() > 0) {
-            for (String it : collections) {
-                sb.append(it + sep);
-            }
-        }
-        String tmp = sb.toString();
-        if (tmp.endsWith(sep)) {
-            tmp = tmp.substring(0, tmp.length() - 1);
-        }
-        return tmp;
-    }
 }

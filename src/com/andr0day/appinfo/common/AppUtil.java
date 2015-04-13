@@ -5,6 +5,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.text.TextUtils;
 
 /**
@@ -69,12 +70,12 @@ public class AppUtil {
         }
     }
 
-    public static boolean isSystemApp(int flags) {
-        return (flags & ApplicationInfo.FLAG_SYSTEM) == ApplicationInfo.FLAG_SYSTEM;
+    public static boolean isSystemApp(PackageInfo packageInfo) {
+        return (packageInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0;
     }
 
-    public static boolean isDebugable(int flags) {
-        return ((flags & ApplicationInfo.FLAG_DEBUGGABLE) == ApplicationInfo.FLAG_DEBUGGABLE);
+    public static boolean isDebugable(PackageInfo packageInfo) {
+        return (packageInfo.applicationInfo.uid != 1000 && (packageInfo.applicationInfo.flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0 || !"user".equals(Build.TYPE));
     }
 
     public static Intent getAppLauncherIntent(String pkgName, PackageManager pm) {

@@ -5,10 +5,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Html;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,13 +18,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import com.andr0day.appinfo.common.AppUtil;
 import com.andr0day.appinfo.common.CertUtils;
-import com.andr0day.appinfo.common.Constants;
-import com.andr0day.appinfo.common.StringUtils;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by andr0day on 2015/3/18.
@@ -39,17 +36,18 @@ public class AppInfoActivity extends Activity {
         TextView textView = new TextView(this);
         textView.setText("信息采集中，请稍后......");
         setContentView(textView);
-
-        new AppInfoCollector(AppInfoActivity.this).execute();
+        new AppInfoCollector(this).execute();
     }
 
-    class AppInfoCollector extends AsyncTask<Object, Integer, List<Map<String, Object>>> {
+    public void onResume() {
+        super.onResume();
+    }
+
+    class AppInfoCollector extends AsyncTask<Object, Integer, List<PackageInfo>> {
 
         private Context context;
 
         private PackageManager packageManager;
-
-        List<Map<String, Object>> data = new ArrayList<Map<String, Object>>();
 
         public AppInfoCollector(Context context) {
             this.context = context;
@@ -58,36 +56,26 @@ public class AppInfoActivity extends Activity {
 
 
         @Override
-        protected List<Map<String, Object>> doInBackground(Object[] params) {
-            List<PackageInfo> pkgs = packageManager.getInstalledPackages(0);
-            data = new ArrayList<Map<String, Object>>();
-            for (PackageInfo pkg : pkgs) {
-                Map tmp = new HashMap();
-                tmp.put(Constants.APP_ICON, AppUtil.getAppIcon(pkg, packageManager));
-                tmp.put(Constants.APP_NAME, AppUtil.getAppName(pkg, packageManager));
-                tmp.put(Constants.PKG_NAME, AppUtil.getPkgName(pkg));
-                tmp.put(Constants.APK_PATH, AppUtil.getApkPath(pkg));
-                tmp.put(Constants.DATA_DIR, AppUtil.getDataDir(pkg));
-                PackageInfo tmpPkg = null;
-                try {
-                    tmpPkg = packageManager.getPackageInfo(AppUtil.getPkgName(pkg), PackageManager.GET_SIGNATURES);
-                    tmp.put(Constants.APP_SIGS, CertUtils.getSigMd5s(tmpPkg));
-                } catch (PackageManager.NameNotFoundException e) {
-                    e.printStackTrace();
+        protected List<PackageInfo> doInBackground(Object[] params) {
+            List<PackageInfo> packageInfos = packageManager.getInstalledPackages(PackageManager.GET_SIGNATURES);
+            Collections.sort(packageInfos, new Comparator<PackageInfo>() {
+                @Override
+                public int compare(PackageInfo lhs, PackageInfo rhs) {
+                    if (!AppUtil.isSystemApp(lhs) && AppUtil.isSystemApp(rhs)) {
+                        return -1;
+                    } else if (AppUtil.isSystemApp(lhs) && !AppUtil.isSystemApp(rhs)) {
+                        return 1;
+                    }
+                    return 0;
                 }
-                tmp.put(Constants.APP_FLAGS, AppUtil.getAppFlags(pkg));
-                if (AppUtil.isSystemApp(AppUtil.getAppFlags(pkg))) {
-                    data.add(tmp);
-                } else {
-                    data.add(0, tmp);
-                }
-            }
-            return data;
+            });
+            return packageInfos;
         }
 
-        protected void onPostExecute(List<Map<String, Object>> result) {
+        @Override
+        protected void onPostExecute(List<PackageInfo> packageInfos) {
             ListView listView = new ListView(context);
-            listView.setAdapter(new MyAdaptor(data));
+            listView.setAdapter(new MyAdaptor(packageInfos, packageManager));
             AppInfoActivity.this.setContentView(listView);
         }
 
@@ -95,21 +83,23 @@ public class AppInfoActivity extends Activity {
 
     private class MyAdaptor extends BaseAdapter {
 
-        List<Map<String, Object>> data;
+        List<PackageInfo> packageInfos;
+        PackageManager packageManager;
 
-        MyAdaptor(List<Map<String, Object>> data) {
-            this.data = data;
+        MyAdaptor(List<PackageInfo> packageInfos, PackageManager packageManager) {
+            this.packageInfos = packageInfos;
+            this.packageManager = packageManager;
             mLayoutInflater = LayoutInflater.from(AppInfoActivity.this);
         }
 
         @Override
         public int getCount() {
-            return data.size();
+            return packageInfos.size();
         }
 
         @Override
         public Object getItem(int position) {
-            return data.get(position);
+            return packageInfos.get(position);
         }
 
         @Override
@@ -135,42 +125,46 @@ public class AppInfoActivity extends Activity {
                 viewHolder = (ViewHolder) convertView.getTag();
             }
 
-            if (position < data.size()) {
-                viewHolder.appIcon.setImageDrawable((Drawable) data.get(position).get(Constants.APP_ICON));
-                String appName = (String) data.get(position).get(Constants.APP_NAME);
-                String pkgName = (String) data.get(position).get(Constants.PKG_NAME);
-                if (AppUtil.getAppLauncherIntent(pkgName, AppInfoActivity.this.getPackageManager()) != null) {
+            if (position < packageInfos.size()) {
+                PackageInfo packageInfo = packageInfos.get(position);
+                viewHolder.appIcon.setImageDrawable(AppUtil.getAppIcon(packageInfo, packageManager));
+                String appName = AppUtil.getAppName(packageInfo, packageManager);
+                final String pkgName = AppUtil.getPkgName(packageInfo);
+                if (AppUtil.getAppLauncherIntent(pkgName, packageManager) != null) {
                     viewHolder.appName.setText(Html.fromHtml("<u>" + appName + "</u>"));
                 } else {
                     viewHolder.appName.setText(appName);
                 }
-                if (AppUtil.isSystemApp((Integer) data.get(position).get(Constants.APP_FLAGS))) {
+                if (AppUtil.isSystemApp(packageInfo)) {
                     viewHolder.appName.setTextColor(getResources().getColor(R.color.yellow));
                 } else {
                     viewHolder.appName.setTextColor(getResources().getColor(R.color.green));
                 }
-                if (AppUtil.isDebugable((Integer) data.get(position).get(Constants.APP_FLAGS))) {
+                if (AppUtil.isDebugable(packageInfo)) {
                     viewHolder.debugable.setImageDrawable(getResources().getDrawable(R.drawable.debug));
                 }
 
                 viewHolder.pkgName.setText(pkgName);
-                viewHolder.apkPath.setText((String) data.get(position).get(Constants.APK_PATH));
-                viewHolder.dataDir.setText((String) data.get(position).get(Constants.DATA_DIR));
-                viewHolder.sigs.setText(StringUtils.join((List) data.get(position).get(Constants.APP_SIGS), ","));
-            }
-            convertView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    try {
-                        String pkgName = (String) data.get(position).get(Constants.PKG_NAME);
-                        Intent intent = AppUtil.getAppLauncherIntent(pkgName, AppInfoActivity.this.getPackageManager());
-                        AppInfoActivity.this.startActivity(intent);
-                    } catch (Exception e) {
-                        //ignore
+                viewHolder.apkPath.setText(AppUtil.getApkPath(packageInfo));
+                viewHolder.dataDir.setText(AppUtil.getDataDir(packageInfo));
+                viewHolder.sigs.setText(TextUtils.join(",", CertUtils.getSigMd5s(packageInfo)));
+                convertView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        try {
+                            Intent intent = new Intent();
+                            intent.putExtra("pkgName", pkgName);
+                            intent.setClass(AppInfoActivity.this, AppDetailActivity.class);
+                            startActivity(intent);
+//
+//                            Intent intent = AppUtil.getAppLauncherIntent(pkgName, AppInfoActivity.this.getPackageManager());
+//                            AppInfoActivity.this.startActivity(intent);
+                        } catch (Exception e) {
+                            //ignore
+                        }
                     }
-                }
-            });
-
+                });
+            }
             return convertView;
         }
     }

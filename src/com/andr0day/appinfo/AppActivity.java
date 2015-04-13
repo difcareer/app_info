@@ -1,39 +1,14 @@
 package com.andr0day.appinfo;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
-import android.os.Build;
+import android.content.pm.ResolveInfo;
 import android.os.Bundle;
-import android.text.Html;
-import android.text.method.ScrollingMovementMethod;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
-import com.andr0day.appinfo.common.AppUtil;
-import com.andr0day.appinfo.common.CertUtils;
-import com.andr0day.appinfo.common.Constants;
-import com.andr0day.appinfo.common.StringUtils;
-import com.andr0day.appinfo.common.SystemPropertiesCollector;
+import android.widget.Toast;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Properties;
 
 public class AppActivity extends Activity {
 
@@ -49,6 +24,7 @@ public class AppActivity extends Activity {
         Button buildInfoB = (Button) findViewById(R.id.buildInfo);
         Button appInfoB = (Button) findViewById(R.id.appInfo);
         Button mountInfoB = (Button) findViewById(R.id.mountInfo);
+        Button netInfoB = (Button) findViewById(R.id.netInfo);
 
 
         systemInfoB.setOnClickListener(new View.OnClickListener() {
@@ -83,6 +59,15 @@ public class AppActivity extends Activity {
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setClass(AppActivity.this, MountInfoActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        netInfoB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(AppActivity.this, NetInfoActivity.class);
                 startActivity(intent);
             }
         });

@@ -5,7 +5,6 @@
               android:layout_height="fill_parent"
               android:layout_gravity="center"
         >
-
     <TableLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
@@ -13,33 +12,20 @@
             <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="查看应用信息"
-                    android:id="@+id/appInfo" />
+                    android:text="打开它"
+                    android:id="@+id/open_it"/>
 
             <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="查看系统参数"
-                    android:id="@+id/systemInfo" />
+                    android:text="禁用它"
+                    android:id="@+id/disable_it"/>
 
             <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="查看Build参数"
-                    android:id="@+id/buildInfo" />
-        </TableRow>
-        <TableRow>
-            <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="查看mount信息"
-                    android:id="@+id/mountInfo" />
-
-            <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="查看网络信息"
-                    android:id="@+id/netInfo" />
+                    android:text="激活它"
+                    android:id="@+id/enable_it"/>
         </TableRow>
     </TableLayout>
 </LinearLayout>
