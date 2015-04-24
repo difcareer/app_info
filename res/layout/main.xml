@@ -14,32 +14,39 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="查看应用信息"
-                    android:id="@+id/appInfo" />
+                    android:id="@+id/appInfo"/>
 
             <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="查看系统参数"
-                    android:id="@+id/systemInfo" />
+                    android:id="@+id/systemInfo"/>
 
             <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="查看Build参数"
-                    android:id="@+id/buildInfo" />
+                    android:id="@+id/buildInfo"/>
         </TableRow>
         <TableRow>
             <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="查看mount信息"
-                    android:id="@+id/mountInfo" />
-
+                    android:id="@+id/mountInfo"/>
             <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="查看网络信息"
-                    android:id="@+id/netInfo" />
+                    android:id="@+id/netInfo"/>
+            <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="安装Busybox"
+                    android:id="@+id/installBusybox"/>
+        </TableRow>
+        <TableRow>
+
         </TableRow>
     </TableLayout>
 </LinearLayout>

@@ -2,15 +2,19 @@ package com.andr0day.appinfo;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+import com.andr0day.appinfo.common.BusyboxUtil;
+import com.andr0day.appinfo.common.FileUtils;
+import com.andr0day.appinfo.common.RootUtil;
 
-import java.util.List;
+import java.io.File;
 
 public class AppActivity extends Activity {
+
+    private static final String TAG = "AppActivity";
 
     private static final int MSG_LOAD_START = 1;
 
@@ -25,7 +29,7 @@ public class AppActivity extends Activity {
         Button appInfoB = (Button) findViewById(R.id.appInfo);
         Button mountInfoB = (Button) findViewById(R.id.mountInfo);
         Button netInfoB = (Button) findViewById(R.id.netInfo);
-
+        Button installBusyBox = (Button) findViewById(R.id.installBusybox);
 
         systemInfoB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,6 +73,26 @@ public class AppActivity extends Activity {
                 Intent intent = new Intent();
                 intent.setClass(AppActivity.this, NetInfoActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        installBusyBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (BusyboxUtil.isInstalled()) {
+                    Toast.makeText(AppActivity.this, "已经安装", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                FileUtils.copyAssetsToFiles(AppActivity.this, BusyboxUtil.getBusyBox());
+                File file = new File(AppActivity.this.getFilesDir(), BusyboxUtil.getBusyBox());
+                String path = file.getAbsolutePath();
+                String content = RootUtil.execStr("mount -o rw,remount /system; cp -r /system/xbin /system/xbin_bak; cp "
+                        + path + " /system/xbin; chmod 755 /system/xbin/" + BusyboxUtil.getBusyBox() + "; /system/xbin/" + BusyboxUtil.getBusyBox()
+                        + " --install /system/xbin/; mount -o ro,remount /system");
+                if (BusyboxUtil.isInstalled()) {
+                    Toast.makeText(AppActivity.this, "安装成功,安装路径：/system/xbin/", Toast.LENGTH_SHORT).show();
+                    return;
+                }
             }
         });
     }

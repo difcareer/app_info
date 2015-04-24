@@ -22,6 +22,5 @@
         <activity android:name=".MountInfoActivity"/>
         <activity android:name=".NetInfoActivity"/>
         <activity android:name=".AppDetailActivity"/>
-        <service android:name=".TestService" android:process=":test"/>
     </application>
 </manifest> 
