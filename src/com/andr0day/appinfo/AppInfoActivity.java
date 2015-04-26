@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import com.andr0day.appinfo.common.AppUtil;
 import com.andr0day.appinfo.common.CertUtils;
+import com.andr0day.appinfo.common.DbHelper;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -27,6 +29,7 @@ import java.util.List;
  * Created by andr0day on 2015/3/18.
  */
 public class AppInfoActivity extends Activity {
+    private static final String TAG = "AppInfoActivity";
 
     private LayoutInflater mLayoutInflater;
 
@@ -120,6 +123,7 @@ public class AppInfoActivity extends Activity {
                 viewHolder.dataDir = (TextView) convertView.findViewById(R.id.dataDir);
                 viewHolder.sigs = (TextView) convertView.findViewById(R.id.sigs);
                 viewHolder.debugable = (ImageView) convertView.findViewById(R.id.debugable);
+                viewHolder.disabled = (ImageView) convertView.findViewById(R.id.disabled);
                 convertView.setTag(viewHolder);
             } else {
                 viewHolder = (ViewHolder) convertView.getTag();
@@ -142,6 +146,16 @@ public class AppInfoActivity extends Activity {
                 }
                 if (AppUtil.isDebugable(packageInfo)) {
                     viewHolder.debugable.setImageDrawable(getResources().getDrawable(R.drawable.debug));
+                    viewHolder.debugable.setVisibility(View.VISIBLE);
+                } else {
+                    viewHolder.debugable.setVisibility(View.GONE);
+                }
+
+                if (DbHelper.getInstance(AppInfoActivity.this).existIsolate(pkgName)) {
+                    viewHolder.disabled.setImageDrawable(getResources().getDrawable(R.drawable.disabled));
+                    viewHolder.disabled.setVisibility(View.VISIBLE);
+                } else {
+                    viewHolder.disabled.setVisibility(View.GONE);
                 }
 
                 viewHolder.pkgName.setText(pkgName);
@@ -177,6 +191,7 @@ public class AppInfoActivity extends Activity {
         public TextView dataDir;
         public TextView sigs;
         public ImageView debugable;
+        public ImageView disabled;
     }
 
 }

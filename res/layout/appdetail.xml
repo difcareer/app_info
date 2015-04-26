@@ -3,7 +3,7 @@
               android:orientation="horizontal"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
-              android:layout_gravity="center"
+              android:gravity="center"
         >
     <TableLayout
             android:layout_width="wrap_content"
@@ -27,6 +27,14 @@
                     android:text="激活它"
                     android:id="@+id/enable_it"/>
         </TableRow>
+        <TableRow>
+            <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="暴露的组件"
+                    android:id="@+id/exposed_comp"/>
+        </TableRow>
+
     </TableLayout>
 </LinearLayout>
 

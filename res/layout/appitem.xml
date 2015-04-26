@@ -16,6 +16,10 @@
                    android:layout_width="30sp"
                    android:layout_height="30sp"
                    android:layout_gravity="center"/>
+        <ImageView android:id="@+id/disabled"
+                   android:layout_width="30sp"
+                   android:layout_height="30sp"
+                   android:layout_gravity="center"/>
     </LinearLayout>
 
     <LinearLayout android:orientation="vertical"
