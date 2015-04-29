@@ -46,7 +46,21 @@
                     android:id="@+id/installBusybox"/>
         </TableRow>
         <TableRow>
-
+            <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="探测777文件"
+                    android:id="@+id/seach777"/>
+            <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="开启Top监控"
+                    android:id="@+id/openTop"/>
+            <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="关闭Top监控"
+                    android:id="@+id/stopTop"/>
         </TableRow>
     </TableLayout>
 </LinearLayout>

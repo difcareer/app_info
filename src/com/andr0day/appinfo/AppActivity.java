@@ -29,7 +29,10 @@ public class AppActivity extends Activity {
         Button appInfoB = (Button) findViewById(R.id.appInfo);
         Button mountInfoB = (Button) findViewById(R.id.mountInfo);
         Button netInfoB = (Button) findViewById(R.id.netInfo);
-        Button installBusyBox = (Button) findViewById(R.id.installBusybox);
+        final Button installBusyBox = (Button) findViewById(R.id.installBusybox);
+        Button search777 = (Button) findViewById(R.id.seach777);
+        Button openTop = (Button) findViewById(R.id.openTop);
+        Button stopTop = (Button) findViewById(R.id.stopTop);
 
         systemInfoB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,6 +96,33 @@ public class AppActivity extends Activity {
                     Toast.makeText(AppActivity.this, "安装成功,安装路径：/system/xbin/", Toast.LENGTH_SHORT).show();
                     return;
                 }
+            }
+        });
+
+        search777.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(AppActivity.this, Search777Activity.class);
+                startActivity(intent);
+            }
+        });
+
+        openTop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(AppActivity.this, TopService.class);
+                startService(intent);
+            }
+        });
+
+        stopTop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(AppActivity.this, TopService.class);
+                stopService(intent);
             }
         });
     }
