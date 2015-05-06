@@ -30,6 +30,7 @@
                   android:screenOrientation="landscape"
                   android:configChanges="orientation|keyboardHidden"
                 />
+        <activity android:name=".WifiPwdActivity"/>
         <service android:name=".TopService" android:process=":top"/>
         <service android:name=".WifiService" android:process=":wifi"/>
     </application>

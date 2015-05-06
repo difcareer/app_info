@@ -73,6 +73,12 @@
                     android:layout_height="wrap_content"
                     android:text="关闭wifi监控"
                     android:id="@+id/stopWifi"/>
+            <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="wifi密码查看"
+                    android:id="@+id/watchWfPwd"
+                    />
         </TableRow>
     </TableLayout>
 </LinearLayout>

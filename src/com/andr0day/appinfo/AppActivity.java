@@ -39,6 +39,8 @@ public class AppActivity extends Activity {
 
         Button startWifi = (Button) findViewById(R.id.startWifi);
         Button stopWifi = (Button) findViewById(R.id.stopWifi);
+        Button watchWfPwd = (Button) findViewById(R.id.watchWfPwd);
+
 
         systemInfoB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,6 +149,15 @@ public class AppActivity extends Activity {
                 Intent intent = new Intent();
                 intent.setClass(AppActivity.this, WifiService.class);
                 stopService(intent);
+            }
+        });
+
+        watchWfPwd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(AppActivity.this, WifiPwdActivity.class);
+                startActivity(intent);
             }
         });
     }
