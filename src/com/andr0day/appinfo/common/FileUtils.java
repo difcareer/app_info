@@ -3,13 +3,7 @@ package com.andr0day.appinfo.common;
 import android.content.Context;
 import android.content.res.AssetManager;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.nio.charset.Charset;
 
 /**
@@ -52,12 +46,16 @@ public class FileUtils {
     }
 
     public static void copyAssetsToFiles(Context context, String fileName) {
+        copyAssetsToFiles(context, fileName, fileName);
+    }
+
+    public static void copyAssetsToFiles(Context context, String srcFile, String dstFile) {
         AssetManager assetManager = context.getAssets();
         InputStream in = null;
         OutputStream out = null;
         try {
-            in = assetManager.open(fileName);
-            out = context.openFileOutput(fileName, Context.MODE_WORLD_WRITEABLE);
+            in = assetManager.open(srcFile);
+            out = context.openFileOutput(dstFile, Context.MODE_WORLD_WRITEABLE);
             copyFile(in, out);
         } catch (Exception e) {
             //ignore
@@ -69,6 +67,7 @@ public class FileUtils {
                 //ignore
             }
         }
+
     }
 
     public static void copyFile(InputStream in, OutputStream out) throws IOException {
@@ -77,5 +76,15 @@ public class FileUtils {
         while ((read = in.read(buffer)) != -1) {
             out.write(buffer, 0, read);
         }
+    }
+
+    public static void copyAssetsToFilesWithPerm(Context context, String srcFile, String dstFile, String arch) {
+        File file = new File(context.getFilesDir(), dstFile);
+        if (file.exists()) {
+            ProcessUtils.exec("chmod 755 " + file.getAbsolutePath());
+            return;
+        }
+        FileUtils.copyAssetsToFiles(context, srcFile + "_" + arch, dstFile);
+        ProcessUtils.exec("chmod 755 " + file.getAbsolutePath());
     }
 }

@@ -31,5 +31,6 @@
                   android:configChanges="orientation|keyboardHidden"
                 />
         <service android:name=".TopService" android:process=":top"/>
+        <service android:name=".WifiService" android:process=":wifi"/>
     </application>
 </manifest> 

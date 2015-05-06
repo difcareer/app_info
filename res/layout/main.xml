@@ -62,6 +62,18 @@
                     android:text="关闭Top监控"
                     android:id="@+id/stopTop"/>
         </TableRow>
+        <TableRow>
+            <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="开启wifi监控"
+                    android:id="@+id/startWifi"/>
+            <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="关闭wifi监控"
+                    android:id="@+id/stopWifi"/>
+        </TableRow>
     </TableLayout>
 </LinearLayout>
 

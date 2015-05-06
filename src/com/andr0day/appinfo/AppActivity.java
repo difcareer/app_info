@@ -24,15 +24,21 @@ public class AppActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+
+        Button appInfoB = (Button) findViewById(R.id.appInfo);
         Button systemInfoB = (Button) findViewById(R.id.systemInfo);
         Button buildInfoB = (Button) findViewById(R.id.buildInfo);
-        Button appInfoB = (Button) findViewById(R.id.appInfo);
+
         Button mountInfoB = (Button) findViewById(R.id.mountInfo);
         Button netInfoB = (Button) findViewById(R.id.netInfo);
-        final Button installBusyBox = (Button) findViewById(R.id.installBusybox);
+        Button installBusyBox = (Button) findViewById(R.id.installBusybox);
+
         Button search777 = (Button) findViewById(R.id.seach777);
         Button openTop = (Button) findViewById(R.id.openTop);
         Button stopTop = (Button) findViewById(R.id.stopTop);
+
+        Button startWifi = (Button) findViewById(R.id.startWifi);
+        Button stopWifi = (Button) findViewById(R.id.stopWifi);
 
         systemInfoB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,5 +131,24 @@ public class AppActivity extends Activity {
                 stopService(intent);
             }
         });
+
+        startWifi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(AppActivity.this, WifiService.class);
+                startService(intent);
+            }
+        });
+
+        stopWifi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(AppActivity.this, WifiService.class);
+                stopService(intent);
+            }
+        });
     }
 }
+
