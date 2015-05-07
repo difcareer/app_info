@@ -41,6 +41,8 @@ public class AppActivity extends Activity {
         Button stopWifi = (Button) findViewById(R.id.stopWifi);
         Button watchWfPwd = (Button) findViewById(R.id.watchWfPwd);
 
+        Button modifyBuild = (Button) findViewById(R.id.modifyBuild);
+
 
         systemInfoB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -157,6 +159,15 @@ public class AppActivity extends Activity {
             public void onClick(View view) {
                 Intent intent = new Intent();
                 intent.setClass(AppActivity.this, WifiPwdActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        modifyBuild.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(AppActivity.this, ModifyBuildActivity.class);
                 startActivity(intent);
             }
         });

@@ -80,6 +80,14 @@
                     android:id="@+id/watchWfPwd"
                     />
         </TableRow>
+        <TableRow>
+            <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="修改build参数"
+                    android:id="@+id/modifyBuild"
+                    />
+        </TableRow>
     </TableLayout>
 </LinearLayout>
 

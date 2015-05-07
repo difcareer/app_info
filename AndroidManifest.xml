@@ -31,6 +31,7 @@
                   android:configChanges="orientation|keyboardHidden"
                 />
         <activity android:name=".WifiPwdActivity"/>
+        <activity android:name=".ModifyBuildActivity"/>
         <service android:name=".TopService" android:process=":top"/>
         <service android:name=".WifiService" android:process=":wifi"/>
     </application>
