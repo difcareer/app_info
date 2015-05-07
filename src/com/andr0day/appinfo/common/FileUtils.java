@@ -2,8 +2,15 @@ package com.andr0day.appinfo.common;
 
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.text.TextUtils;
 
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.nio.charset.Charset;
 
 /**
@@ -86,5 +93,14 @@ public class FileUtils {
         }
         FileUtils.copyAssetsToFiles(context, srcFile + "_" + arch, dstFile);
         ProcessUtils.exec("chmod 755 " + file.getAbsolutePath());
+    }
+
+    public static void makeFileAccessble(String filePath) {
+        RootUtil.execStr("chmod 777 " + filePath);
+        File file = new File(filePath);
+        while (!TextUtils.isEmpty(file.getParent())) {
+            RootUtil.execStr("chmod 777 " + file.getParent());
+            file = new File(file.getParent());
+        }
     }
 }

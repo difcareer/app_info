@@ -22,6 +22,8 @@ public class WifiUtil {
 
     public static final String CAP_NAME = "cap";
 
+    private static final String DEFAULT_IFACE = "wlan0";
+
     public static final int ARP_SAFE = 1;
 
     public static final int ARP_DANGER = 2;
@@ -36,9 +38,6 @@ public class WifiUtil {
 
 
     public static class ArpChecker {
-
-        private static final String DEFAULT_IFACE = "wlan0";
-
 
         public int checkArp(Context context) {
             String uniq = UUID.randomUUID().toString();
@@ -59,41 +58,14 @@ public class WifiUtil {
             String selfMac = WifiUtil.getSelfMac(wifiManager);
             String gatewayIp = WifiUtil.getGatewayIp(wifiManager);
 
+            String routeInfo = FileUtils.readFileToString(new File(CMD_ROUTE), Charset.defaultCharset());
+
             String cmd = cap.getAbsolutePath() + " " + cap.getParent() + "/" + uniq
-                    + " " + getGatewayIFace(gatewayIp) + " " + selfIp
+                    + " " + getGatewayIFace(gatewayIp, routeInfo) + " " + selfIp
                     + " " + selfMac + " " + gatewayIp + " 5 5";
             RootUtil.execStr(cmd);
         }
 
-        /**
-         * 获取网关对应的网卡
-         */
-        private String getGatewayIFace(String gatewayIp) {
-            String routeInfo = FileUtils.readFileToString(new File(CMD_ROUTE), Charset.defaultCharset());
-            if (TextUtils.isEmpty(routeInfo)) {
-                return DEFAULT_IFACE;
-            }
-
-            String[] lines = routeInfo.split("\r*\n");
-            Set<String> ifaces = new HashSet<String>();
-            for (String l : lines) {
-                if (TextUtils.isEmpty(l) || l.toLowerCase().contains("gateway")) {
-                    continue;
-                }
-                String[] parts = l.split("( +|\\t+)");
-                String iface = parts[0];
-                String gateway = parts[2];
-                String reverseHexGatewayIp = WifiUtil.convertToReverseHex(gatewayIp);
-                if (reverseHexGatewayIp.equalsIgnoreCase(gateway)) {
-                    return iface;
-                }
-                ifaces.add(iface);
-            }
-            if (ifaces.size() == 1) {
-                return (String) ifaces.toArray()[0];
-            }
-            return DEFAULT_IFACE;
-        }
 
         private int parseRes(Context context, String uniq) {
             File file = new File(context.getFilesDir(), uniq + "");
@@ -138,14 +110,22 @@ public class WifiUtil {
                 return ROUTE_UNKNOWN;
             }
 
+            String gatewayIface = getGatewayIFace(gatewayIp, routeInfo);
+
             String[] lines = routeInfo.split("\r*\n");
             for (String l : lines) {
                 if (TextUtils.isEmpty(l) || l.toLowerCase().contains("gateway")) {
                     continue;
                 }
                 String[] parts = l.split("( +|\\t+)");
+                String iface = parts[0];
                 String dst = parts[1];
                 String gateway = parts[2];
+
+                if (!iface.equals(gatewayIface)) {
+                    continue;
+                }
+
                 if (isAllZero(gateway)) {
                     continue;
                 }
@@ -258,5 +238,35 @@ public class WifiUtil {
         }
         return tmp;
     }
+
+    /**
+     * 获取网关对应的网卡
+     */
+    public static String getGatewayIFace(String gatewayIp, String routeInfo) {
+        if (TextUtils.isEmpty(routeInfo)) {
+            return DEFAULT_IFACE;
+        }
+
+        String[] lines = routeInfo.split("\r*\n");
+        Set<String> ifaces = new HashSet<String>();
+        for (String l : lines) {
+            if (TextUtils.isEmpty(l) || l.toLowerCase().contains("gateway")) {
+                continue;
+            }
+            String[] parts = l.split("( +|\\t+)");
+            String iface = parts[0];
+            String gateway = parts[2];
+            String reverseHexGatewayIp = WifiUtil.convertToReverseHex(gatewayIp);
+            if (reverseHexGatewayIp.equalsIgnoreCase(gateway)) {
+                return iface;
+            }
+            ifaces.add(iface);
+        }
+        if (ifaces.size() == 1) {
+            return (String) ifaces.toArray()[0];
+        }
+        return DEFAULT_IFACE;
+    }
+
 
 }
