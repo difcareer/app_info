@@ -32,6 +32,7 @@
                 />
         <activity android:name=".WifiPwdActivity"/>
         <activity android:name=".ModifyBuildActivity"/>
+        <activity android:name=".Test"/>
         <service android:name=".TopService" android:process=":top"/>
         <service android:name=".WifiService" android:process=":wifi"/>
     </application>

@@ -9,7 +9,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,6 +66,10 @@ public class AppInfoActivity extends Activity {
                     if (!AppUtil.isSystemApp(lhs) && AppUtil.isSystemApp(rhs)) {
                         return -1;
                     } else if (AppUtil.isSystemApp(lhs) && !AppUtil.isSystemApp(rhs)) {
+                        return 1;
+                    } else if (AppUtil.isSystemUpdateApp(lhs) && !AppUtil.isSystemUpdateApp(rhs)) {
+                        return -1;
+                    } else if (!AppUtil.isSystemUpdateApp(lhs) && AppUtil.isSystemUpdateApp(rhs)) {
                         return 1;
                     }
                     return 0;
@@ -139,8 +142,13 @@ public class AppInfoActivity extends Activity {
                 } else {
                     viewHolder.appName.setText(appName);
                 }
+
                 if (AppUtil.isSystemApp(packageInfo)) {
-                    viewHolder.appName.setTextColor(getResources().getColor(R.color.yellow));
+                    if (AppUtil.isSystemUpdateApp(packageInfo)) {
+                        viewHolder.appName.setTextColor(getResources().getColor(R.color.lightYellow));
+                    } else {
+                        viewHolder.appName.setTextColor(getResources().getColor(R.color.yellow));
+                    }
                 } else {
                     viewHolder.appName.setTextColor(getResources().getColor(R.color.green));
                 }

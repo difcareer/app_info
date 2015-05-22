@@ -34,10 +34,10 @@ public class NetInfoActivity extends Activity {
 
         DhcpInfo dhcpInfo = wifiManager.getDhcpInfo();
 
-        if (wifiInfo == null || wifiInfo.getIpAddress() == 0) {
-            Toast.makeText(this, "wifi not connect", Toast.LENGTH_SHORT).show();
-            return;
-        }
+//        if (wifiInfo == null || wifiInfo.getIpAddress() == 0) {
+//            Toast.makeText(this, "wifi not connect", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
 
         StringBuilder sb = new StringBuilder();
         sb.append("*********************wifi info:\n\n");
