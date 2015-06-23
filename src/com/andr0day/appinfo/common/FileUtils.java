@@ -96,10 +96,10 @@ public class FileUtils {
     }
 
     public static void makeFileAccessble(String filePath) {
-        RootUtil.execStr("chmod 777 " + filePath);
+        RootUtil.safeExecStr("chmod 777 " + filePath);
         File file = new File(filePath);
         while (!TextUtils.isEmpty(file.getParent())) {
-            RootUtil.execStr("chmod 777 " + file.getParent());
+            RootUtil.safeExecStr("chmod 777 " + file.getParent());
             file = new File(file.getParent());
         }
     }

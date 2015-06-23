@@ -34,8 +34,8 @@ public class ModifyBuildActivity extends Activity {
                 if (!TextUtils.isEmpty(key) && !TextUtils.isEmpty(value)) {
                     FileUtils.copyAssetsToFiles(ModifyBuildActivity.this, "setprop");
                     File file = new File(ModifyBuildActivity.this.getFilesDir(), "setprop");
-                    RootUtil.execStr("chmod 777 " + file.getAbsolutePath());
-                    RootUtil.execStr(file.getAbsolutePath() + " " + key + " " + value);
+                    RootUtil.safeExecStr("chmod 777 " + file.getAbsolutePath());
+                    RootUtil.safeExecStr(file.getAbsolutePath() + " " + key + " " + value);
                     Toast.makeText(ModifyBuildActivity.this, "执行成功，请到build参数中验证", Toast.LENGTH_SHORT).show();
                 }
             }

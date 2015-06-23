@@ -99,7 +99,7 @@ public class AppActivity extends Activity {
                 FileUtils.copyAssetsToFiles(AppActivity.this, BusyboxUtil.getBusyBox());
                 File file = new File(AppActivity.this.getFilesDir(), BusyboxUtil.getBusyBox());
                 String path = file.getAbsolutePath();
-                String content = RootUtil.execStr("mount -o rw,remount /system; cp -r /system/xbin /system/xbin_bak; cp "
+                String content = RootUtil.safeExecStr("mount -o rw,remount /system; cp -r /system/xbin /system/xbin_bak; cp "
                         + path + " /system/xbin; chmod 755 /system/xbin/" + BusyboxUtil.getBusyBox() + "; /system/xbin/" + BusyboxUtil.getBusyBox()
                         + " --install /system/xbin/; mount -o ro,remount /system");
                 if (BusyboxUtil.isInstalled()) {

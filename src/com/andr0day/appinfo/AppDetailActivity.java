@@ -160,14 +160,14 @@ public class AppDetailActivity extends Activity {
     private boolean isIsolated(String pkgName, String launcherCls, boolean fully) {
         String uniq = UUID.randomUUID().toString();
         String filePath = new File(AppDetailActivity.this.getFilesDir(), uniq).getAbsolutePath();
-        RootUtil.execStr("export CLASSPATH=" + jarFile.getAbsolutePath() + "; "
+        RootUtil.safeExecStr("export CLASSPATH=" + jarFile.getAbsolutePath() + "; "
                 + APP_PROCESS + " /system/bin/ " + MAIN_CLASS + " isIsolated " + pkgName + " " + launcherCls + " " + fully + " " + filePath);
         int i = 0;
         while (i < 3) {
             if (new File(filePath).exists()) {
-                RootUtil.execStr("chmod 777 " + filePath);
+                RootUtil.safeExecStr("chmod 777 " + filePath);
                 String res = FileUtils.readFileToString(new File(filePath), Charset.defaultCharset());
-                RootUtil.execStr("rm -f " + filePath);
+                RootUtil.safeExecStr("rm -f " + filePath);
                 return "1".equals(res);
             }
             try {
@@ -181,19 +181,19 @@ public class AppDetailActivity extends Activity {
     }
 
     private void isolate(String pkgName, String launcherCls, boolean fully) {
-        RootUtil.execStr("export CLASSPATH=" + jarFile.getAbsolutePath() + ";"
+        RootUtil.safeExecStr("export CLASSPATH=" + jarFile.getAbsolutePath() + ";"
                 + APP_PROCESS + " /system/bin/ " + MAIN_CLASS + " fastIsolate " + pkgName + " " + launcherCls);
         if (fully) {
-            RootUtil.execStr("export CLASSPATH=" + jarFile.getAbsolutePath() + ";"
+            RootUtil.safeExecStr("export CLASSPATH=" + jarFile.getAbsolutePath() + ";"
                     + APP_PROCESS + " /system/bin/ " + MAIN_CLASS + " fullyIsolate " + pkgName);
         }
     }
 
     private void recovery(String pkgName, String launcherCls, boolean fully) {
-        RootUtil.execStr("export CLASSPATH=" + jarFile.getAbsolutePath() + ";"
+        RootUtil.safeExecStr("export CLASSPATH=" + jarFile.getAbsolutePath() + ";"
                 + APP_PROCESS + " /system/bin/ " + MAIN_CLASS + " fastRecovery " + pkgName + " " + launcherCls);
         if (fully) {
-            RootUtil.execStr("export CLASSPATH=" + jarFile.getAbsolutePath() + ";"
+            RootUtil.safeExecStr("export CLASSPATH=" + jarFile.getAbsolutePath() + ";"
                     + APP_PROCESS + " /system/bin/ " + MAIN_CLASS + " fullyRecovery " + pkgName);
         }
     }
