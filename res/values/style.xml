@@ -9,4 +9,7 @@
     <color name="black">#000000</color>
     <color name="gray">#FF9CA9AA</color>
     <color name="lightYellow">#FFFFEC0E</color>
+    <color name="home">#FFEF63FF</color>
+    <color name="input">#FF4AFFB6</color>
+    <color name="homeinput">#ffffd6da</color>
 </resources>

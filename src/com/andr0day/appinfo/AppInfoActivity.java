@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Html;
@@ -12,6 +13,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodInfo;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -51,9 +53,14 @@ public class AppInfoActivity extends Activity {
 
         private PackageManager packageManager;
 
+        List<ResolveInfo> homes;
+        List<InputMethodInfo> inputs;
+
         public AppInfoCollector(Context context) {
             this.context = context;
             this.packageManager = context.getPackageManager();
+            homes = AppUtil.getHomes(context);
+            inputs = AppUtil.getInputs(context);
         }
 
 
@@ -63,7 +70,15 @@ public class AppInfoActivity extends Activity {
             Collections.sort(packageInfos, new Comparator<PackageInfo>() {
                 @Override
                 public int compare(PackageInfo lhs, PackageInfo rhs) {
-                    if (!AppUtil.isSystemApp(lhs) && AppUtil.isSystemApp(rhs)) {
+                    if (AppUtil.isHome(lhs, homes) && !AppUtil.isHome(rhs, homes)) {
+                        return -1;
+                    } else if (!AppUtil.isHome(lhs, homes) && AppUtil.isHome(rhs, homes)) {
+                        return 1;
+                    } else if (AppUtil.isInput(lhs, inputs) && !AppUtil.isInput(rhs, inputs)) {
+                        return -1;
+                    } else if (!AppUtil.isInput(lhs, inputs) && AppUtil.isInput(rhs, inputs)) {
+                        return 1;
+                    } else if (!AppUtil.isSystemApp(lhs) && AppUtil.isSystemApp(rhs)) {
                         return -1;
                     } else if (AppUtil.isSystemApp(lhs) && !AppUtil.isSystemApp(rhs)) {
                         return 1;
@@ -81,7 +96,7 @@ public class AppInfoActivity extends Activity {
         @Override
         protected void onPostExecute(List<PackageInfo> packageInfos) {
             ListView listView = new ListView(context);
-            listView.setAdapter(new MyAdaptor(packageInfos, packageManager));
+            listView.setAdapter(new MyAdaptor(packageInfos, packageManager, homes, inputs));
             AppInfoActivity.this.setContentView(listView);
         }
 
@@ -91,10 +106,15 @@ public class AppInfoActivity extends Activity {
 
         List<PackageInfo> packageInfos;
         PackageManager packageManager;
+        List<ResolveInfo> homes;
+        List<InputMethodInfo> inputs;
 
-        MyAdaptor(List<PackageInfo> packageInfos, PackageManager packageManager) {
+
+        MyAdaptor(List<PackageInfo> packageInfos, PackageManager packageManager, List<ResolveInfo> homes, List<InputMethodInfo> inputs) {
             this.packageInfos = packageInfos;
             this.packageManager = packageManager;
+            this.homes = homes;
+            this.inputs = inputs;
             mLayoutInflater = LayoutInflater.from(AppInfoActivity.this);
         }
 
@@ -152,6 +172,18 @@ public class AppInfoActivity extends Activity {
                 } else {
                     viewHolder.appName.setTextColor(getResources().getColor(R.color.green));
                 }
+
+                if (AppUtil.isHome(packageInfo, homes) && !AppUtil.isInput(packageInfo, inputs)) {
+                    viewHolder.appName.append(" [桌面]");
+                    viewHolder.appName.setTextColor(getResources().getColor(R.color.home));
+                } else if (AppUtil.isInput(packageInfo, inputs) && !AppUtil.isHome(packageInfo, homes)) {
+                    viewHolder.appName.append(" [输入法]");
+                    viewHolder.appName.setTextColor(getResources().getColor(R.color.input));
+                } else if(AppUtil.isHome(packageInfo,homes) && AppUtil.isInput(packageInfo,inputs)){
+                    viewHolder.appName.append(" [桌面、输入法]");
+                    viewHolder.appName.setTextColor(getResources().getColor(R.color.homeinput));
+                }
+
                 if (AppUtil.isDebugable(packageInfo)) {
                     viewHolder.debugable.setImageDrawable(getResources().getDrawable(R.drawable.debug));
                     viewHolder.debugable.setVisibility(View.VISIBLE);

@@ -63,15 +63,15 @@ public class WifiUtil {
             String cmd = cap.getAbsolutePath() + " " + cap.getParent() + "/" + uniq
                     + " " + getGatewayIFace(gatewayIp, routeInfo) + " " + selfIp
                     + " " + selfMac + " " + gatewayIp + " 5 5";
-            RootUtil.execStr(cmd);
+            RootUtil.safeExecStr(cmd);
         }
 
 
         private int parseRes(Context context, String uniq) {
             File file = new File(context.getFilesDir(), uniq + "");
-            RootUtil.execStr("chmod 666 " + file.getAbsolutePath());
+            RootUtil.safeExecStr("chmod 666 " + file.getAbsolutePath());
             String res = FileUtils.readFileToString(file, Charset.defaultCharset());
-            RootUtil.execStr("rm -f " + file.getAbsolutePath());
+            RootUtil.safeExecStr("rm -f " + file.getAbsolutePath());
             if (TextUtils.isEmpty(res)) {
                 return ARP_UNKNOWN;
             }
