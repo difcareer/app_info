@@ -2,7 +2,6 @@ package com.andr0day.appinfo;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
 import android.widget.TextView;
 
 import java.io.BufferedReader;

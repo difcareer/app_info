@@ -36,7 +36,7 @@ public class CertUtils {
         List<String> sigs = new ArrayList<String>();
         for (Signature signature : packageInfo.signatures) {
             StringBuilder sb = new StringBuilder();
-            sb.append("> md5 : \n   "+StringUtils.toHexString(md5NonE(signature.toByteArray())) + "\n");
+            sb.append("> md5 : \n   " + StringUtils.toHexString(md5NonE(signature.toByteArray())) + "\n");
             Map<String, String> sigInfo = getSigInfo(signature.toByteArray());
             for (String k : sigInfo.keySet()) {
                 if (!PUB_KEY.equals(k) && !SIGN_NUMBER.equals(k)) {

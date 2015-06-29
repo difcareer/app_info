@@ -1,12 +1,8 @@
 package com.andr0day.appinfo.common;
 
-import android.util.Log;
-
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 
 /**
  * Created by andr0day on 2015/4/24.
@@ -17,7 +13,7 @@ public class RootUtil {
         StringBuilder sb = new StringBuilder();
         BufferedReader br = null;
         try {
-            Process process = Runtime.getRuntime().exec(new String[] { "su", "-c", cmd });
+            Process process = Runtime.getRuntime().exec(new String[]{"su", "-c", cmd});
             br = new BufferedReader(new InputStreamReader(process.getInputStream()));
             String line = null;
             while ((line = br.readLine()) != null) {
@@ -36,7 +32,7 @@ public class RootUtil {
 
     public static void execVoid(String cmd) {
         try {
-            Runtime.getRuntime().exec(new String[] { "su", "-c", cmd });
+            Runtime.getRuntime().exec(new String[]{"su", "-c", cmd});
         } catch (IOException e) {
             e.printStackTrace();
         }

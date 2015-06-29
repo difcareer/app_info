@@ -71,11 +71,19 @@ public class AppUtil {
     }
 
     public static boolean isSystemApp(PackageInfo packageInfo) {
-        return (packageInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0;
+        return isSystemApp(packageInfo.applicationInfo);
+    }
+
+    public static boolean isSystemApp(ApplicationInfo applicationInfo) {
+        return (applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0;
     }
 
     public static boolean isSystemUpdateApp(PackageInfo packageInfo) {
-        return (packageInfo.applicationInfo.flags & ApplicationInfo.FLAG_UPDATED_SYSTEM_APP) != 0;
+        return isSystemUpdateApp(packageInfo.applicationInfo);
+    }
+
+    public static boolean isSystemUpdateApp(ApplicationInfo applicationInfo) {
+        return (applicationInfo.flags & ApplicationInfo.FLAG_UPDATED_SYSTEM_APP) != 0;
     }
 
     public static boolean isDebugable(PackageInfo packageInfo) {

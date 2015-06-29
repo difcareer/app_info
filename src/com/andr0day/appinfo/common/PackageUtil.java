@@ -3,7 +3,6 @@ package com.andr0day.appinfo.common;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.text.TextUtils;
-import org.w3c.dom.Text;
 
 /**
  * Created by andr0day on 2015/4/10.

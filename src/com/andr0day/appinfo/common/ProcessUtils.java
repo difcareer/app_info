@@ -16,7 +16,7 @@ public class ProcessUtils {
         StringBuilder sb = new StringBuilder();
         BufferedReader br = null;
         try {
-            Process process = Runtime.getRuntime().exec(new String[] { "sh", "-c", cmd });
+            Process process = Runtime.getRuntime().exec(new String[]{"sh", "-c", cmd});
             br = new BufferedReader(new InputStreamReader(process.getInputStream()));
             String line = null;
             while ((line = br.readLine()) != null) {

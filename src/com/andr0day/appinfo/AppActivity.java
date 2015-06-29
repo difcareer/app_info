@@ -9,6 +9,7 @@ import android.widget.Toast;
 import com.andr0day.appinfo.common.BusyboxUtil;
 import com.andr0day.appinfo.common.FileUtils;
 import com.andr0day.appinfo.common.RootUtil;
+import com.andr0day.classloader.ClassloaderActivity;
 
 import java.io.File;
 
@@ -171,6 +172,10 @@ public class AppActivity extends Activity {
                 startActivity(intent);
             }
         });
+//
+//        Intent test = new Intent();
+//        test.setClass(this, ClassloaderActivity.class);
+//        startActivity(test);
     }
 }
 

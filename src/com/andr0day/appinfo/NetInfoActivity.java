@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.format.Formatter;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.andr0day.appinfo.common.FileUtils;
 import com.andr0day.appinfo.common.ProcessUtils;
 
