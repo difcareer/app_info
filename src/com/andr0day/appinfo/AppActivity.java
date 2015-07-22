@@ -9,7 +9,6 @@ import android.widget.Toast;
 import com.andr0day.appinfo.common.BusyboxUtil;
 import com.andr0day.appinfo.common.FileUtils;
 import com.andr0day.appinfo.common.RootUtil;
-import com.andr0day.classloader.ClassloaderActivity;
 
 import java.io.File;
 

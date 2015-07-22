@@ -70,15 +70,7 @@ public class AppInfoActivity extends Activity {
             Collections.sort(packageInfos, new Comparator<PackageInfo>() {
                 @Override
                 public int compare(PackageInfo lhs, PackageInfo rhs) {
-                    if (AppUtil.isHome(lhs, homes) && !AppUtil.isHome(rhs, homes)) {
-                        return -1;
-                    } else if (!AppUtil.isHome(lhs, homes) && AppUtil.isHome(rhs, homes)) {
-                        return 1;
-                    } else if (AppUtil.isInput(lhs, inputs) && !AppUtil.isInput(rhs, inputs)) {
-                        return -1;
-                    } else if (!AppUtil.isInput(lhs, inputs) && AppUtil.isInput(rhs, inputs)) {
-                        return 1;
-                    } else if (!AppUtil.isSystemApp(lhs) && AppUtil.isSystemApp(rhs)) {
+                    if (!AppUtil.isSystemApp(lhs) && AppUtil.isSystemApp(rhs)) {
                         return -1;
                     } else if (AppUtil.isSystemApp(lhs) && !AppUtil.isSystemApp(rhs)) {
                         return 1;
@@ -175,13 +167,10 @@ public class AppInfoActivity extends Activity {
 
                 if (AppUtil.isHome(packageInfo, homes) && !AppUtil.isInput(packageInfo, inputs)) {
                     viewHolder.appName.append(" [桌面]");
-                    viewHolder.appName.setTextColor(getResources().getColor(R.color.home));
                 } else if (AppUtil.isInput(packageInfo, inputs) && !AppUtil.isHome(packageInfo, homes)) {
                     viewHolder.appName.append(" [输入法]");
-                    viewHolder.appName.setTextColor(getResources().getColor(R.color.input));
                 } else if(AppUtil.isHome(packageInfo,homes) && AppUtil.isInput(packageInfo,inputs)){
                     viewHolder.appName.append(" [桌面、输入法]");
-                    viewHolder.appName.setTextColor(getResources().getColor(R.color.homeinput));
                 }
 
                 if (AppUtil.isDebugable(packageInfo)) {
