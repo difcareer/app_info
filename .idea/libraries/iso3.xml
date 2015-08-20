@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="iso">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/assets/iso.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
