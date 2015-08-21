@@ -1,9 +1,6 @@
 package com.andr0day.common;
 
-/**
- * Created by andr0day on 2015/7/27.
- */
-interface XpReflect {
+interface IXpReflect {
 
     List<String> getMethods(String className);
 

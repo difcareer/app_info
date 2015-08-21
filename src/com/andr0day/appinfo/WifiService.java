@@ -1,7 +1,5 @@
 package com.andr0day.appinfo;
 
-import android.app.Notification;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
@@ -12,6 +10,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.widget.Toast;
+import com.andr0day.appinfo.common.NotificationUtil;
 import com.andr0day.appinfo.common.WifiUtil;
 
 public class WifiService extends Service {
@@ -27,10 +26,6 @@ public class WifiService extends Service {
 
     private static final int SHOW_ROUTE_SAFE = 4;
 
-    private NotificationManager notificationManager;
-
-    private Notification notification;
-
     private PendingIntent pendingIntent;
 
     private int notifyId = 9413;
@@ -41,22 +36,18 @@ public class WifiService extends Service {
             switch (msg.what) {
                 case SHOW_ARP_DANGER:
                     Toast.makeText(WifiService.this, "当前存在arp攻击", Toast.LENGTH_SHORT).show();
-                    notification.setLatestEventInfo(WifiService.this, "WiFi监控开启", "当前存在arp攻击", pendingIntent);
-                    notificationManager.notify(notifyId, notification);
+                    NotificationUtil.getInstance(WifiService.this).sendNotify(WifiService.this, new Intent(WifiService.this, AppActivity.class), "WiFi监控开启", "当前存在arp攻击");
                     break;
                 case SHOW_ROUTE_DANGER:
                     Toast.makeText(WifiService.this, "当前存在route攻击", Toast.LENGTH_SHORT).show();
-                    notification.setLatestEventInfo(WifiService.this, "WiFi监控开启", "当前存在route攻击", pendingIntent);
-                    notificationManager.notify(notifyId, notification);
+                    NotificationUtil.getInstance(WifiService.this).sendNotify(WifiService.this, new Intent(WifiService.this, AppActivity.class), "WiFi监控开启", "当前存在route攻击");
                     break;
                 case SHOW_ARP_SAFE:
-                    notification.setLatestEventInfo(WifiService.this, "WiFi监控开启", "arp安全", pendingIntent);
-                    notificationManager.notify(notifyId, notification);
+                    NotificationUtil.getInstance(WifiService.this).sendNotify(WifiService.this, new Intent(WifiService.this, AppActivity.class), "WiFi监控开启", "arp安全");
                     break;
 
                 case SHOW_ROUTE_SAFE:
-                    notification.setLatestEventInfo(WifiService.this, "WiFi监控开启", "route安全", pendingIntent);
-                    notificationManager.notify(notifyId, notification);
+                    NotificationUtil.getInstance(WifiService.this).sendNotify(WifiService.this, new Intent(WifiService.this, AppActivity.class), "WiFi监控开启", "route安全");
                     break;
             }
 
@@ -72,12 +63,8 @@ public class WifiService extends Service {
     public void onCreate() {
         super.onCreate();
         stop = false;
-        notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        notification = new Notification(R.drawable.app_icon, "WiFi监控开启", System.currentTimeMillis());
         pendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, AppActivity.class), 0);
         Toast.makeText(this, "wifi监控已开启", Toast.LENGTH_SHORT).show();
-        notification.setLatestEventInfo(this, "WiFi监控开启", "WiFi监控:已开启", pendingIntent);
-        startForeground(notifyId, notification);
 
         new AsyncTask<Object, Object, Object>() {
 

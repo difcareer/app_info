@@ -1,5 +1,7 @@
 package com.andr0day.xposed;
 
+import com.andr0day.xposed.util.HookUtil;
+import com.andr0day.xposed.util.XposedLogUtil;
 import de.robv.android.xposed.XC_MethodHook;
 
 import java.lang.reflect.Method;

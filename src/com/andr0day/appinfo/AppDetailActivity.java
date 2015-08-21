@@ -14,6 +14,8 @@ import com.andr0day.appinfo.common.AppUtil;
 import com.andr0day.appinfo.common.DbHelper;
 import com.andr0day.appinfo.common.FileUtils;
 import com.andr0day.appinfo.common.RootUtil;
+import com.andr0day.xposed.util.ConfigUtil;
+import com.andr0day.xposed.util.XposedUtil;
 
 import java.io.File;
 import java.nio.charset.Charset;
@@ -30,6 +32,11 @@ public class AppDetailActivity extends Activity {
     private Button disableIt;
     private Button enableIt;
     private Button exposedComp;
+    private Button enableXposed;
+    private Button disableXposed;
+    private Button xposed;
+
+
     private String pkgName;
     private PackageManager packageManager;
     private static final String JAR_FILE = "iso.jar";
@@ -74,6 +81,9 @@ public class AppDetailActivity extends Activity {
         disableIt = (Button) findViewById(R.id.disable_it);
         enableIt = (Button) findViewById(R.id.enable_it);
         exposedComp = (Button) findViewById(R.id.exposed_comp);
+        enableXposed = (Button) findViewById(R.id.enable_xposed);
+        disableXposed = (Button) findViewById(R.id.disable_xposed);
+        xposed = (Button) findViewById(R.id.xposed);
 
         final Intent launcherIntent = AppUtil.getAppLauncherIntent(pkgName, packageManager);
         String launcherCls = "null";
@@ -155,6 +165,45 @@ public class AppDetailActivity extends Activity {
                 startActivity(intent);
             }
         });
+
+        setXposedButtonStatus();
+
+        enableXposed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ConfigUtil.setConfig(pkgName, "enable", "true");
+                setXposedButtonStatus();
+            }
+        });
+
+        disableXposed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ConfigUtil.setConfig(pkgName, "enable", "false");
+                setXposedButtonStatus();
+            }
+        });
+
+        xposed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(AppDetailActivity.this, XposedClassloaderActivity.class);
+                intent.putExtra(XposedUtil.PKG_NAME, pkgName);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void setXposedButtonStatus() {
+        boolean xposedEnabled = "true".equals(ConfigUtil.getConfig(pkgName, "enable", "false"));
+        if (xposedEnabled) {
+            enableXposed.setEnabled(false);
+            disableXposed.setEnabled(true);
+        } else {
+            enableXposed.setEnabled(true);
+            disableXposed.setEnabled(false);
+        }
     }
 
     private boolean isIsolated(String pkgName, String launcherCls, boolean fully) {

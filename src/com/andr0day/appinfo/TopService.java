@@ -1,8 +1,6 @@
 package com.andr0day.appinfo;
 
 import android.app.ActivityManager;
-import android.app.Notification;
-import android.app.PendingIntent;
 import android.app.Service;
 import android.content.ComponentName;
 import android.content.Intent;
@@ -11,6 +9,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.widget.Toast;
+import com.andr0day.appinfo.common.NotificationUtil;
 
 import java.util.List;
 
@@ -57,23 +56,7 @@ public class TopService extends Service {
         }.execute();
 
         Toast.makeText(this, "监控已开启", Toast.LENGTH_SHORT).show();
-
-        Notification note = new Notification(R.drawable.app_icon,
-                "Top监控已开启",
-                System.currentTimeMillis());
-        Intent i = new Intent(this, AppActivity.class);
-
-        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                Intent.FLAG_ACTIVITY_SINGLE_TOP);
-
-        PendingIntent pi = PendingIntent.getActivity(this, 0, i, 0);
-
-        note.setLatestEventInfo(this, "Top监控",
-                "TopActivity监控: 已开启",
-                pi);
-        note.flags |= Notification.FLAG_NO_CLEAR;
-
-        startForeground(1337, note);
+        NotificationUtil.getInstance(this).sendNotify(this, new Intent(this, AppActivity.class), "Top监控", "TopActivity监控: 已开启");
     }
 
 
