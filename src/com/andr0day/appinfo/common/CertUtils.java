@@ -37,6 +37,7 @@ public class CertUtils {
         for (Signature signature : packageInfo.signatures) {
             StringBuilder sb = new StringBuilder();
             sb.append("> md5 : \n   " + StringUtils.toHexString(md5NonE(signature.toByteArray())) + "\n");
+            sb.append("> hashcode : \n   " + signature.hashCode()+"\n");
             Map<String, String> sigInfo = getSigInfo(signature.toByteArray());
             for (String k : sigInfo.keySet()) {
                 if (!PUB_KEY.equals(k) && !SIGN_NUMBER.equals(k)) {
@@ -46,6 +47,15 @@ public class CertUtils {
             sigs.add(sb.toString());
         }
         return sigs;
+    }
+
+    public static String getPubKey(PackageInfo packageInfo) {
+        Signature signatures[] = packageInfo.signatures;
+        for (int i = 0; i < signatures.length; i++) {
+            Map<String, String> sigs = getSigInfo(signatures[i].toByteArray());
+            return sigs.get(PUB_KEY);
+        }
+        return null;
     }
 
     public static boolean isDebugable(PackageInfo packageInfo) {
@@ -75,7 +85,8 @@ public class CertUtils {
         Map<String, String> map = new HashMap<String, String>();
         try {
             CertificateFactory certFactory = CertificateFactory.getInstance("X.509");
-            X509Certificate cert = (X509Certificate) certFactory.generateCertificate(new ByteArrayInputStream(signature));
+            X509Certificate cert = (X509Certificate) certFactory
+                    .generateCertificate(new ByteArrayInputStream(signature));
             map.put(PUB_KEY, cert.getPublicKey().toString());
             map.put(SIGN_ALG_NAME, cert.getSigAlgName());
             map.put(SIGN_NUMBER, cert.getSerialNumber().toString());
@@ -89,7 +100,8 @@ public class CertUtils {
     public static void parseSignature(byte[] signature) {
         try {
             CertificateFactory certFactory = CertificateFactory.getInstance("X.509");
-            X509Certificate cert = (X509Certificate) certFactory.generateCertificate(new ByteArrayInputStream(signature));
+            X509Certificate cert = (X509Certificate) certFactory
+                    .generateCertificate(new ByteArrayInputStream(signature));
             String pubKey = cert.getPublicKey().toString();
             String signNumber = cert.getSerialNumber().toString();
             Log.e("SIG", "signName:" + cert.getSigAlgName());
@@ -100,7 +112,6 @@ public class CertUtils {
             e.printStackTrace();
         }
     }
-
 
     public static final byte[] md5(byte buffer[]) throws NoSuchAlgorithmException {
         MessageDigest digest = MessageDigest.getInstance("MD5");

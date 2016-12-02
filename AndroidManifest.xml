@@ -9,8 +9,14 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"></uses-permission>
     <uses-permission android:name="android.permission.GET_TASKS"/>
     <uses-permission android:name="android.permission.REAL_GET_TASKS"/>
+
+    <uses-permission android:name = "android.permission.CAMERA" />
+
+    <!--<uses-feature android:name = "android.hardware.camera" />-->
+
+    <!--<uses-feature android:name = "android.hardware.camera.autofocus" />-->
+
     <application android:label="@string/app_name" android:theme="@android:style/Theme.NoTitleBar"
-                 android:debuggable="true"
                  android:icon="@drawable/app_icon">
         <meta-data
                 android:name="xposedmodule"
@@ -41,9 +47,8 @@
                 />
         <activity android:name=".WifiPwdActivity"/>
         <activity android:name=".ModifyBuildActivity"/>
-        <activity android:name=".Test"/>
-        <activity android:name="com.andr0day.classloader.ClassloaderActivity"/>
         <service android:name=".TopService" android:process=":top"/>
         <service android:name=".WifiService" android:process=":wifi"/>
+        <service android:name=".BrowserService" />
     </application>
 </manifest> 

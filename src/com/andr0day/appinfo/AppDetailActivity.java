@@ -4,12 +4,16 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
 import com.andr0day.appinfo.common.AppUtil;
 import com.andr0day.appinfo.common.DbHelper;
 import com.andr0day.appinfo.common.FileUtils;
@@ -30,6 +34,8 @@ public class AppDetailActivity extends Activity {
     private Button disableIt;
     private Button enableIt;
     private Button exposedComp;
+    private Button fullSig;
+
     private String pkgName;
     private PackageManager packageManager;
     private static final String JAR_FILE = "iso.jar";
@@ -74,6 +80,7 @@ public class AppDetailActivity extends Activity {
         disableIt = (Button) findViewById(R.id.disable_it);
         enableIt = (Button) findViewById(R.id.enable_it);
         exposedComp = (Button) findViewById(R.id.exposed_comp);
+        fullSig = (Button) findViewById(R.id.full_sig);
 
         final Intent launcherIntent = AppUtil.getAppLauncherIntent(pkgName, packageManager);
         String launcherCls = "null";
@@ -91,13 +98,13 @@ public class AppDetailActivity extends Activity {
             });
         }
 
-        if (isIsolated(pkgName, launcherCls, true)) {
-            disableIt.setEnabled(false);
-            enableIt.setEnabled(true);
-        } else {
-            disableIt.setEnabled(true);
-            enableIt.setEnabled(false);
-        }
+//        if (isIsolated(pkgName, launcherCls, true)) {
+//            disableIt.setEnabled(false);
+//            enableIt.setEnabled(true);
+//        } else {
+//            disableIt.setEnabled(true);
+//            enableIt.setEnabled(false);
+//        }
 
         try {
             PackageInfo packageInfo = packageManager.getPackageInfo(pkgName, 0);
@@ -155,6 +162,26 @@ public class AppDetailActivity extends Activity {
                 startActivity(intent);
             }
         });
+
+        fullSig.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    PackageManager pm = getPackageManager();
+                    PackageInfo pi = pm.getPackageInfo(pkgName, PackageManager.GET_SIGNATURES);
+                    Signature[] signatures = pi.signatures;
+                    for (int i = 0; i < signatures.length; i++) {
+                        Signature sig = signatures[i];
+                        byte[] bt = sig.toByteArray();
+                        String str = new String(Base64.encode(bt, Base64.DEFAULT), "iso-8859-1");
+                        Log.e("FullSig", pkgName + "\n" + str+"@@@");
+                    }
+                } catch (Exception e) {
+
+                }
+            }
+        });
+
     }
 
     private boolean isIsolated(String pkgName, String launcherCls, boolean fully) {

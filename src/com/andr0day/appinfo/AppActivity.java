@@ -42,6 +42,8 @@ public class AppActivity extends Activity {
         Button watchWfPwd = (Button) findViewById(R.id.watchWfPwd);
 
         Button modifyBuild = (Button) findViewById(R.id.modifyBuild);
+        Button openBrowser = (Button) findViewById(R.id.openBrowser);
+        Button closeBrowser = (Button) findViewById(R.id.closeBrowser);
 
 
         systemInfoB.setOnClickListener(new View.OnClickListener() {
@@ -100,7 +102,7 @@ public class AppActivity extends Activity {
                 File file = new File(AppActivity.this.getFilesDir(), BusyboxUtil.getBusyBox());
                 String path = file.getAbsolutePath();
                 String content = RootUtil.safeExecStr("mount -o rw,remount /system; cp -r /system/xbin /system/xbin_bak; cp "
-                        + path + " /system/xbin; chmod 755 /system/xbin/" + BusyboxUtil.getBusyBox() + "; /system/xbin/" + BusyboxUtil.getBusyBox()
+                        + path + " /system/xbin ;chmod 755 /system/xbin/" + BusyboxUtil.getBusyBox() + "; /system/xbin/" + BusyboxUtil.getBusyBox()
                         + " --install /system/xbin/; mount -o ro,remount /system");
                 if (BusyboxUtil.isInstalled()) {
                     Toast.makeText(AppActivity.this, "安装成功,安装路径：/system/xbin/", Toast.LENGTH_SHORT).show();
@@ -169,6 +171,24 @@ public class AppActivity extends Activity {
                 Intent intent = new Intent();
                 intent.setClass(AppActivity.this, ModifyBuildActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        openBrowser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(AppActivity.this, BrowserService.class);
+                stopService(intent);
+            }
+        });
+
+        closeBrowser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(AppActivity.this, BrowserService.class);
+                stopService(intent);
             }
         });
 //

@@ -33,6 +33,11 @@
                     android:layout_height="wrap_content"
                     android:text="暴露的组件"
                     android:id="@+id/exposed_comp"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="完整签名"
+                android:id="@+id/full_sig"/>
         </TableRow>
 
     </TableLayout>

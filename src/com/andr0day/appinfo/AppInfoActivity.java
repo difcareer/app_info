@@ -1,8 +1,11 @@
 package com.andr0day.appinfo;
 
 import android.app.Activity;
+import android.app.admin.DevicePolicyManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -10,6 +13,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +26,8 @@ import com.andr0day.appinfo.common.AppUtil;
 import com.andr0day.appinfo.common.CertUtils;
 import com.andr0day.appinfo.common.DbHelper;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -63,26 +69,100 @@ public class AppInfoActivity extends Activity {
             inputs = AppUtil.getInputs(context);
         }
 
-
         @Override
         protected List<PackageInfo> doInBackground(Object[] params) {
             List<PackageInfo> packageInfos = packageManager.getInstalledPackages(PackageManager.GET_SIGNATURES);
-            Collections.sort(packageInfos, new Comparator<PackageInfo>() {
-                @Override
-                public int compare(PackageInfo lhs, PackageInfo rhs) {
-                    if (!AppUtil.isSystemApp(lhs) && AppUtil.isSystemApp(rhs)) {
-                        return -1;
-                    } else if (AppUtil.isSystemApp(lhs) && !AppUtil.isSystemApp(rhs)) {
-                        return 1;
-                    } else if (AppUtil.isSystemUpdateApp(lhs) && !AppUtil.isSystemUpdateApp(rhs)) {
-                        return -1;
-                    } else if (!AppUtil.isSystemUpdateApp(lhs) && AppUtil.isSystemUpdateApp(rhs)) {
-                        return 1;
+            List<String> deviceAdmins = getDeviceAdmins(context);
+            try {
+                String pubKey = CertUtils
+                        .getPubKey(packageManager.getPackageInfo("android", PackageManager.GET_SIGNATURES));
+                int i = 0;
+                int j = 0;
+                for (PackageInfo it : packageInfos) {
+                    if (AppUtil.isSystemApp(it) || AppUtil.isSystemUpdateApp(it)) {
+                        j++;
+                        if (deviceAdmins.contains(it.packageName)) {
+                            i++;
+                            Log.e(TAG, "Device: " + AppUtil.getAppName(it, packageManager));
+                        } else if (isHome(context, it.packageName)) {
+                            i++;
+                            Log.e(TAG, "Home: " + AppUtil.getAppName(it, packageManager));
+                        }
+//                        else if (!isDisabled(it)) {
+//                            i++;
+//                            Log.e(TAG, "NoDisable: " + AppUtil.getAppName(it, packageManager));
+//                        }
+                        else if (pubKey.equals(CertUtils.getPubKey(it))) {
+                            i++;
+                            Log.e(TAG, "Cert: " + AppUtil.getAppName(it, packageManager));
+                        }
                     }
-                    return 0;
                 }
-            });
+                Log.e(TAG, "count: " + i+" "+ j);
+                Collections.sort(packageInfos, new Comparator<PackageInfo>() {
+                    @Override
+                    public int compare(PackageInfo lhs, PackageInfo rhs) {
+                        if (!AppUtil.isSystemApp(lhs) && AppUtil.isSystemApp(rhs)) {
+                            return -1;
+                        } else if (AppUtil.isSystemApp(lhs) && !AppUtil.isSystemApp(rhs)) {
+                            return 1;
+                        } else if (AppUtil.isSystemUpdateApp(lhs) && !AppUtil.isSystemUpdateApp(rhs)) {
+                            return -1;
+                        } else if (!AppUtil.isSystemUpdateApp(lhs) && AppUtil.isSystemUpdateApp(rhs)) {
+                            return 1;
+                        }
+                        return 0;
+                    }
+                });
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             return packageInfos;
+        }
+
+        private boolean isHome(Context context, String pkgName) {
+            Intent home = new Intent("android.intent.action.MAIN");
+            home.addCategory("android.intent.category.HOME");
+            home.setPackage(pkgName);
+            List<ResolveInfo> resolveInfos = context.getPackageManager().queryIntentActivities(home, 0);
+            if (resolveInfos != null && resolveInfos.size() > 0) {
+                return true;
+            }
+            return false;
+        }
+
+        private boolean isDisabled(PackageInfo packageInfo) {
+            try {
+                Class applicationInfoClazz = ApplicationInfo.class;
+                Field enableField = applicationInfoClazz.getField("enabled");
+                enableField.setAccessible(true);
+                Boolean b = (Boolean) enableField.get(packageInfo.applicationInfo);
+                if (!b) {
+                    return true;
+                }
+                Field enabledSettingField = applicationInfoClazz.getField("enabledSetting");
+                enabledSettingField.setAccessible(true);
+                Integer v = (Integer) enabledSettingField.get(packageInfo.applicationInfo);
+                if (v == 3) {
+                    return true;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return false;
+        }
+
+        private List<String> getDeviceAdmins(Context context) {
+            List<String> pkgs = new ArrayList<String>();
+            DevicePolicyManager devicePolicyManager = (DevicePolicyManager) context
+                    .getSystemService(DEVICE_POLICY_SERVICE);
+            List<ComponentName> deviceAdmins = devicePolicyManager.getActiveAdmins();
+            if (deviceAdmins != null && !deviceAdmins.isEmpty()) {
+                for (ComponentName it : deviceAdmins) {
+                    pkgs.add(it.getPackageName());
+                }
+            }
+            return pkgs;
         }
 
         @Override
@@ -101,8 +181,8 @@ public class AppInfoActivity extends Activity {
         List<ResolveInfo> homes;
         List<InputMethodInfo> inputs;
 
-
-        MyAdaptor(List<PackageInfo> packageInfos, PackageManager packageManager, List<ResolveInfo> homes, List<InputMethodInfo> inputs) {
+        MyAdaptor(List<PackageInfo> packageInfos, PackageManager packageManager, List<ResolveInfo> homes,
+                List<InputMethodInfo> inputs) {
             this.packageInfos = packageInfos;
             this.packageManager = packageManager;
             this.homes = homes;
@@ -169,7 +249,7 @@ public class AppInfoActivity extends Activity {
                     viewHolder.appName.append(" [桌面]");
                 } else if (AppUtil.isInput(packageInfo, inputs) && !AppUtil.isHome(packageInfo, homes)) {
                     viewHolder.appName.append(" [输入法]");
-                } else if(AppUtil.isHome(packageInfo,homes) && AppUtil.isInput(packageInfo,inputs)){
+                } else if (AppUtil.isHome(packageInfo, homes) && AppUtil.isInput(packageInfo, inputs)) {
                     viewHolder.appName.append(" [桌面、输入法]");
                 }
 
@@ -199,9 +279,9 @@ public class AppInfoActivity extends Activity {
                             intent.putExtra("pkgName", pkgName);
                             intent.setClass(AppInfoActivity.this, AppDetailActivity.class);
                             startActivity(intent);
-//
-//                            Intent intent = AppUtil.getAppLauncherIntent(pkgName, AppInfoActivity.this.getPackageManager());
-//                            AppInfoActivity.this.startActivity(intent);
+                            //
+                            //                            Intent intent = AppUtil.getAppLauncherIntent(pkgName, AppInfoActivity.this.getPackageManager());
+                            //                            AppInfoActivity.this.startActivity(intent);
                         } catch (Exception e) {
                             //ignore
                         }
